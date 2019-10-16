@@ -19,3 +19,12 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+router中配置路由，
+compents创建组件，
+page中创建页面
+内容写在<template></templata>，该标签属于组件会被加载到app.vue中
+app.vue然后会被加载到index.html中
+
+静态文件（如图片或css文件）存放在static中
