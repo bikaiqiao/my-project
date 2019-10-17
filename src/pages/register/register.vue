@@ -31,6 +31,8 @@
   <el-footer></el-footer>
 </el-container>
 </template>
+<style src="../../../static\css\login.css"></style>
+<style src="../../../static\css\register.css"></style>
 
 <script>
   export default {

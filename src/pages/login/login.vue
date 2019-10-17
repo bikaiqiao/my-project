@@ -38,6 +38,7 @@
 </template>
 
 
+<style src="../../../static\css\login.css"></style>
 <script>
 export default {
   data() {

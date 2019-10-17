@@ -4,12 +4,16 @@
   </div>
 </template>
 
+
+
+<style src="../static\css\main.css"></style>
+
 <script>
 export default {
   name: 'App'
 }
+
 </script>
-<style src="../static\css\main.css"></style>
 <style>
 *{
   margin:0;

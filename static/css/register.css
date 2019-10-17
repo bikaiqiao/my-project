@@ -1,0 +1,16 @@
+.register-button {
+    margin-top: 20px;
+    width: 80%;
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 2rem;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    clear: both;
+    background: #42c02e;
+    /* font-family: 宋体; */
+}

@@ -1,0 +1,78 @@
+.navIconPosition {
+    position: absolute;
+    top: 1.5rem;
+    left: 12.6rem;
+    z-index: 1;
+}
+
+.navNone {
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navNone:hover {
+    text-decoration: none;
+}
+
+
+/* 轮播图背景颜色 */
+
+.el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 150px;
+    margin: 0;
+}
+
+.el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
+}
+
+.navAside {
+    padding-left: 1rem;
+}
+
+.list-container {}
+
+.note-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.note-list li {
+    position: relative;
+    width: 100%;
+    margin: 0 0 15px;
+    padding: 15px 2px 20px 0;
+    border-bottom: 1px solid #f0f0f0;
+    word-wrap: break-word;
+    line-height: 1rem;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.note-list .title {
+    margin: -7px 0 20px;
+    display: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1rem;
+}
+
+.abstract {
+    font-size: 0.7rem;
+    color: #8d8787;
+    line-height: 1rem;
+}

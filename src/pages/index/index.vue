@@ -134,7 +134,7 @@
     </el-container>
   </el-container>
 </template>
-
+<style src="../../../static\css\index.css"></style>
 <script>
   export default {
     data() {
