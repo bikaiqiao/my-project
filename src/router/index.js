@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+// import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
@@ -8,14 +8,13 @@ const routes = [{
         path: '/login',
         name: 'login',
         component: () =>
-            import ("@/pages/login/login.vue")
+            import ("@/pages//login.vue")
     },
-
     {
         path: '/register',
         name: 'register',
         component: () =>
-            import ("@/pages/register/register.vue")
+            import ("@/pages//register.vue")
     },
     {
         path: '/index',
