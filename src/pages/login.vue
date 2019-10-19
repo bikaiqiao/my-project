@@ -33,13 +33,29 @@
         </el-col>
       </el-row>
     </el-main>
-    <el-footer></el-footer>
+    <el-footer>&nbsp;</el-footer>
   </el-container>
 </template>
+<style src="../../static\css\login.css"></style>
 
 
-<style src="../../../static\css\login.css"></style>
+// <script>
+// import login from "./../../components/login.vue";
+// export default {
+//   // data() {
+//   //   return {};
+//   // },
+//   name:"login",
+//   components: {
+//     login
+//   }
+// };
+//
+</script>
+
+
 <script>
+import setCookie from '../api/cookies/ApiCookie.js'
 export default {
   data() {
     return {
@@ -56,9 +72,8 @@ export default {
       var jsonParameter = JSON.stringify(Parameter);
       //用于测试表单获得的数据
       // alert(jsonParameter);
-      this.axios
-        .post("http://localhost:8888/api/login", {
-          data: {
+      this.$axios.get('https://www.tianqiapi.com/api/?version=v1&cityid=101110101&appid=[appid]&appsecret=[appsecret]', {
+          params: {
             username: userName,
             password: password
           }
@@ -67,12 +82,12 @@ export default {
         // .then((response) => {
         //   console.log(response.data)
         //   })
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.error(error);
-        });
+        // .then(function(response) {
+        //   console.log(response);
+        // })
+        // .catch(function(error) {
+        //   console.error(error);
+        // });
     }
   }
 };
