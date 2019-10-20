@@ -51,11 +51,11 @@
 //   }
 // };
 //
-</script>
+// </script>
 
 
 <script>
-import setCookie from '../api/cookies/ApiCookie.js'
+import qs from 'qs'
 export default {
   data() {
     return {
@@ -67,27 +67,30 @@ export default {
     login() {
       var userName = this.userName;
       var password = this.password;
-      var Parameter = { userName: userName, password: password };
-
+      var Parameter = { username: userName, password: password };
       var jsonParameter = JSON.stringify(Parameter);
+      var qsParameter=qs.stringify(Parameter);
+      console.log(jsonParameter);
       //用于测试表单获得的数据
       // alert(jsonParameter);
-      this.$axios.get('https://www.tianqiapi.com/api/?version=v1&cityid=101110101&appid=[appid]&appsecret=[appsecret]', {
+      // this.$axios.get('https://www.tianqiapi.com/api/?version=v1&cityid=101110101&appid=[appid]&appsecret=[appsecret]', {
+        this.$axios.post('http://localhost:8888/api/login', {
           params: {
-            username: userName,
-            password: password
+            // username:userName,
+            // password:password
+            qsParameter
           }
         })
         // 打印response到表单的箭头函数写法
-        // .then((response) => {
-        //   console.log(response.data)
-        //   })
-        // .then(function(response) {
-        //   console.log(response);
-        // })
-        // .catch(function(error) {
-        //   console.error(error);
-        // });
+        .then((response) => {
+          console.log(response.data)
+          })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.error(error);
+        });
     }
   }
 };

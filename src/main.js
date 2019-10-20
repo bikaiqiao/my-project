@@ -13,6 +13,7 @@ import axios from './api/axios/ApiAxios.js'
 Vue.use(ElementUI);
 // Vue.use(vueAxios, axios);
 Vue.prototype.$axios = axios;
+// Vue.prototype.$cookie = Cookies;
 
 Vue.config.productionTip = false
 

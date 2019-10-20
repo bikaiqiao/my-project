@@ -1,37 +1,38 @@
 import axios from 'axios';
-import setCookie from '../cookies/ApiCookie'
-
+// import setCookie from '../cookies/ApiCookie';
+import Cookies from 'js-cookie'
 // 创建axios实例
 const httpService = axios.create({
     baseURL: "http://localhost:8080", // url前缀
     timeout: 3000 // 请求超时时间
 });
-
+// httpService.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 // // request拦截器
-// httpService.interceptors.request.use(
-//     config => {
-//         // 根据条件加入token-安全携带
-//         if (false) { // 需自定义
-//             // 让每个请求携带token
-//             config.headers['User-Token'] = '';
-//         }
-//         return config;
-//     },
-//     error => {
-//         // 请求错误处理
-//         Promise.reject(error);
-//     }
-// )
+httpService.interceptors.request.use(
+    config => {
+        // 根据条件加入token-安全携带
+        // if (false) { // 需自定义
+        //     // 让每个请求携带token
+        //     config.headers['User-Token'] = '';
+        // }
+        console.log(config.data);
+        return config;
+    },
+    error => {
+        // 请求错误处理
+        Promise.reject(error);
+    }
+)
 
 // // respone拦截器
 // httpService.interceptors.response.use(
 //     response => {
 //         // 统一处理状态
 //         const res = response.data;
-//         if (res.statuscode != 1) { // 需自定义
+//         if (res.erddcode != 200) { // 需自定义
 //             // 返回异常
 //             return Promise.reject({
-//                 status: res.statuscode,
+//                 status: res.errcode,
 //                 message: res.message
 //             });
 //         } else {
@@ -88,6 +89,39 @@ const httpService = axios.create({
 //     }
 // )
 
+// // http response 拦截器
+// axios.interceptors.response.use(
+//     response => {
+//         //response.data.errCode是我接口返回的值，如果值为2，说明Cookie丢失，然后跳转到登录页，这里根据大家自己的情况来设定
+//         if (response.data.errCode == 2) {
+//             router.push({
+//                 path: '/login',
+//                 query: { redirect: router.currentRoute.fullPath } //从哪个页面跳转
+//             })
+//         }
+//         return response;
+//     },
+//     error => {
+//         return Promise.reject(error.response.data)
+//     });
+
+httpService.interceptors.response.use(response => {
+    // 对响应数据做些什么
+    console.log(response.data);
+    if (response.data.errcode == 100) {
+        Cookies.set('token', response.data.errmsg);
+        console.log(Cookies.get('token'));
+    }
+    return response
+}, error => {
+    // 对响应错误做些什么
+    console.log('error', error.response) // 修改后
+    return Promise.reject(error)
+})
+
+
+
+
 /*网络请求部分*/
 
 /*
@@ -98,18 +132,17 @@ const httpService = axios.create({
 export function get(url, params = {}) {
     return new Promise((resolve, reject) => {
         httpService({
-            url: url,
-            method: 'get',
-            params: params
-        }).then(response => {
-            console.log(response);
-            Cookies.set("token", token, 7);
-            console.log(Cookies.get("token"));
-            resolve(response);
-        }).catch(error => {
-            console.log(response);
-            reject(error);
-        });
+                url: url,
+                method: 'get',
+                params: params
+            }).then(response => {
+                // console.log(response);
+                resolve(response);
+            })
+            .catch(error => {
+                console.error(response);
+                reject(error);
+            });
     });
 }
 
@@ -123,8 +156,13 @@ export function post(url, params = {}) {
         httpService({
             url: url,
             method: 'post',
-            data: params
+            data: params,
+            headers: {
+                // 'Access-Control-Allow-Origin': '*', //解决cors头问题
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
         }).then(response => {
+            console.log(params);
             resolve(response);
         }).catch(error => {
             reject(error);
