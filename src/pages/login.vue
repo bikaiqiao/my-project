@@ -51,11 +51,12 @@
 //   }
 // };
 //
-// </script>
+//
+</script>
 
 
 <script>
-import qs from 'qs'
+import qs from "qs";
 export default {
   data() {
     return {
@@ -68,23 +69,15 @@ export default {
       var userName = this.userName;
       var password = this.password;
       var Parameter = { username: userName, password: password };
-      var jsonParameter = JSON.stringify(Parameter);
+
       var qsParameter=qs.stringify(Parameter);
-      console.log(jsonParameter);
+      var jsonParameter=JSON.stringify(Parameter);
+      console.log(qsParameter);
       //用于测试表单获得的数据
-      // alert(jsonParameter);
-      // this.$axios.get('https://www.tianqiapi.com/api/?version=v1&cityid=101110101&appid=[appid]&appsecret=[appsecret]', {
-        this.$axios.post('http://localhost:8888/api/login', {
-          params: {
-            // username:userName,
-            // password:password
-            qsParameter
-          }
-        })
-        // 打印response到表单的箭头函数写法
-        .then((response) => {
-          console.log(response.data)
-          })
+      // this.axios.get('https://www.tianqiapi.com/api/?version=v1&cityid=101110101&appid=[appid]&appsecret=[appsecret]', {
+      this.$axios.postWithURL( 'login',
+          qsParameter
+        )
         .then(function(response) {
           console.log(response);
         })

@@ -142,7 +142,7 @@
         activeIndex: '1',
         value1:true,
         value2:true,
-        select:搜索
+        select:'',
       };
     },
     methods: {

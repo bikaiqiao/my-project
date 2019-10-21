@@ -5,15 +5,11 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-// import axios from 'axios';
-// import vueAxios from 'vue-axios';
 import axios from './api/axios/ApiAxios.js'
 // import './config/rem'
 
 Vue.use(ElementUI);
-// Vue.use(vueAxios, axios);
 Vue.prototype.$axios = axios;
-// Vue.prototype.$cookie = Cookies;
 
 Vue.config.productionTip = false
 
