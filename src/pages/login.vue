@@ -15,12 +15,12 @@
         <el-col :span="8" class="el-box">
           <div>
             <div class="grid-content">
-              <router-link to="login" class="box none active">登入</router-link>
+              <router-link to="login" class="box none active" >登入</router-link>
               <a class="box pointer">·</a>
               <router-link to="register" class="box none">注册</router-link>
             </div>
             <div class="form-box">
-              <el-input v-model="userName" placeholder="手机号或邮箱"></el-input>
+              <el-input v-model="userName" placeholder="用户名" autofocus=true></el-input>
               <el-input v-model="password" placeholder="密码" show-password></el-input>
             </div>
             <div>
@@ -69,13 +69,12 @@ export default {
       var userName = this.userName;
       var password = this.password;
       var Parameter = { username: userName, password: password };
-
-      var qsParameter=qs.stringify(Parameter);
       var jsonParameter=JSON.stringify(Parameter);
-      console.log(qsParameter);
+      var qsParameter=qs.stringify(Parameter);
+      // console.log(qsParameter);
       //用于测试表单获得的数据
       // this.axios.get('https://www.tianqiapi.com/api/?version=v1&cityid=101110101&appid=[appid]&appsecret=[appsecret]', {
-      this.$axios.postWithURL( 'login',
+      this.$axios.postWithURL('login',
           qsParameter
         )
         .then(function(response) {

@@ -6,15 +6,14 @@ const httpService = axios.create({
     baseURL: "http://localhost:8080", // url前缀
     timeout: 3000 // 请求超时时间
 });
-// // request拦截器
+// request拦截器
 httpService.interceptors.request.use(
     config => {
-        // 根据条件加入token-安全携带
-        // if (false) { // 需自定义
-        //     // 让每个请求携带token
-        //     config.headers['User-Token'] = '';
-        // }
-        console.log(config.data);
+        // 让每个请求携带token
+        if (Cookies.get("token")) {
+            config.headers.Authorization = 'Bearer ' + Cookies.get("token");
+        }
+        console.log(config.headers.Authorization);
         return config;
     },
     error => {
@@ -24,10 +23,15 @@ httpService.interceptors.request.use(
 )
 
 
-
+//response拦截器
 httpService.interceptors.response.use(response => {
     // 对响应数据做些什么
-    console.log(response.headers);
+    // if (response.token) {
+    //     this.$state.token.commit('SET_TOKEN', response.token);
+    // }
+    if (response.data.token) {
+        Cookies.set('token', response.data.token)
+    }
     return response
 }, error => {
     // 对响应错误做些什么
@@ -88,10 +92,9 @@ export function postWithURL(url, params) {
             method: 'post',
             data: params,
             // headers: {
-            //     'content-type': 'application/json;charset=UTF-8'
+            //     'content': 'application/x-www-form-urlencoded'
             // }
         }).then(response => {
-            console.log(params);
             resolve(response);
         }).catch(error => {
             reject(error);
