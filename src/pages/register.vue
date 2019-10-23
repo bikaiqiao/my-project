@@ -21,10 +21,10 @@
           <div>
             <div class="form-box">
               <el-input v-model="userName" placeholder="用户名" autofocus="true" @blur="loseFocus()"></el-input>
-              <div v-bind:class="{FinputIcon:falseInputIcon()}" class="InputIcon">
+              <div id="FinputIcon" class="InputIcon">
                 <i class="el-icon-error"></i>
               </div>
-              <div v-bind:class="{TinputIcon:trueInputIcon()}" class="InputIcon">
+              <div id="TinputIcon" class="InputIcon">
                 <i class="el-icon-success"></i>
               </div>
               <!-- <el-input v-model="telNumber" placeholder="手机号"></el-input> -->
@@ -48,12 +48,17 @@
 </template>
 <style src="../../static\css\login.css"></style>
 <style src="../../static\css\register.css"></style>
+<style>
+.TinputIcon{
+  display:inline-block;
+}
+</style>
 
 <script>
 import qs from "qs";
-var userNoRepeat = true;
+var userNoRepeat = false;
 var userRepeat = false;
-var time=10;
+var time = 10;
 export default {
   data() {
     return {
@@ -73,6 +78,9 @@ export default {
         .postWithURL("sign_up", jsonParameter)
         .then(function(response) {
           console.log(response);
+          if(response.data.code=='-1'){
+            alert("用户名已经注册");
+          }
         })
         .catch(function(error) {
           console.error(error);
@@ -80,27 +88,30 @@ export default {
     },
     loseFocus() {
       var userName = this.userName;
-      console.log(userName);
-      // this.$axios.postWithURL("", userName)
-      //   .then(function(response) {
-      //     console.log(response);
-      //   })
-      //   .catch(function(error) {
-      //     console.error(error);
-      //   });
+      this.$axios.getWithURL("get/"+userName)
+        .then(function(response) {
+          if(response.data.code=='-1'){
+            //如果返回值是-1的话则用户名不能通过
+            document.getElementById("FinputIcon").style.display="inline-block";
+            document.getElementById("TinputIcon").style.display="none"; 
+          }else{
+            //如果返回值不是-1的话则用户名可以通过
+            document.getElementById("TinputIcon").style.display="inline-block";
+            document.getElementById("FinputIcon").style.display="none";
+          }
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.error(error);
+        });
     },
-    falseInputIcon: function() {
-      return userNoRepeat;
-    },
-    trueInputIcon: function() {
-      return userNoRepeat;
-    },
-    // reverseTime() {
-    //   var x=document.getElementById('show');
-    //   var y=time--;
-    //   x.innerHTML=y;
-    //   setTimeout(arguments.callee, 1000);
-    // }
+    //倒计时函数
+    reverseTime() {
+      var x = document.getElementById("show");
+      var y = time--;
+      x.innerHTML = y;
+      setTimeout(this.reverseTime, 1000);
+    }
   }
 };
 </script>

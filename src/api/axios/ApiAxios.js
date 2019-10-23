@@ -13,7 +13,7 @@ httpService.interceptors.request.use(
         if (Cookies.get("token")) {
             config.headers.Authorization = 'Bearer ' + Cookies.get("token");
         }
-        console.log(config.headers.Authorization);
+        // console.log(config.headers.Authorization);
         return config;
     },
     error => {
@@ -53,6 +53,23 @@ export function get(url, params = {}) {
     return new Promise((resolve, reject) => {
         httpService({
                 url: url,
+                method: 'get',
+                params: params
+            }).then(response => {
+                // console.log(response);
+                resolve(response);
+            })
+            .catch(error => {
+                console.error(response);
+                reject(error);
+            });
+    });
+}
+
+export function getWithURL(url, params = {}) {
+    return new Promise((resolve, reject) => {
+        httpService({
+                url: ("http://localhost:8888/api/" + url),
                 method: 'get',
                 params: params
             }).then(response => {
@@ -126,5 +143,6 @@ export default {
     get,
     post,
     fileUpload,
-    postWithURL
+    postWithURL,
+    getWithURL
 }
