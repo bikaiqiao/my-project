@@ -21,10 +21,10 @@
           <div>
             <div class="form-box">
               <el-input v-model="userName" placeholder="用户名" autofocus="true" @blur="loseFocus()"></el-input>
-              <div id="FinputIcon" class="InputIcon">
+              <div v-bind:class="{ display_inline: isInputIcon }" class="InputIcon">
                 <i class="el-icon-error"></i>
               </div>
-              <div id="TinputIcon" class="InputIcon">
+              <div  v-bind:class="{ display_inline: notInputIcon }" class="InputIcon">
                 <i class="el-icon-success"></i>
               </div>
               <!-- <el-input v-model="telNumber" placeholder="手机号"></el-input> -->
@@ -42,31 +42,37 @@
     </el-main>
     <el-footer>
       <div id="show"></div>
-      <button @click="reverseTime()">注册</button>
+      <button @click="button()">注册</button>
     </el-footer>
   </el-container>
 </template>
 <style src="../../static\css\login.css"></style>
 <style src="../../static\css\register.css"></style>
 <style>
-.TinputIcon{
-  display:inline-block;
+.TinputIcon {
+  display: inline-block;
+}
+.display_inline {
+  display: inline-block;
+}
+.display_none {
+  display: none;
 }
 </style>
 
 <script>
 import qs from "qs";
-var userNoRepeat = false;
-var userRepeat = false;
 var time = 10;
+var responseCopy ={};
 export default {
   data() {
     return {
       userName: "",
-      password: ""
+      password: "",
+      isInputIcon: false,
+      notInputIcon: false
     };
   },
-
   methods: {
     login() {
       var userName = this.userName;
@@ -78,7 +84,7 @@ export default {
         .postWithURL("sign_up", jsonParameter)
         .then(function(response) {
           console.log(response);
-          if(response.data.code=='-1'){
+          if (response.data.code == "-1") {
             alert("用户名已经注册");
           }
         })
@@ -86,20 +92,21 @@ export default {
           console.error(error);
         });
     },
-    loseFocus() {
+    loseFocus()  {
       var userName = this.userName;
-      this.$axios.getWithURL("get/"+userName)
-        .then(function(response) {
-          if(response.data.code=='-1'){
-            //如果返回值是-1的话则用户名不能通过
-            document.getElementById("FinputIcon").style.display="inline-block";
-            document.getElementById("TinputIcon").style.display="none"; 
-          }else{
-            //如果返回值不是-1的话则用户名可以通过
-            document.getElementById("TinputIcon").style.display="inline-block";
-            document.getElementById("FinputIcon").style.display="none";
+      this.$axios
+        .getWithURL("is_username_duplicated/" + userName)
+        .then((response) => {
+          if (response.data == true) {
+            //如果返回值是true的话则用户名不能通过
+            this.isInputIcon=true ;
+            this.notInputIcon=false;
+            // console.log(response);
+          } else {
+            //如果返回值不是true的话则用户名可以通过
+            this.isInputIcon=false;
+            this.notInputIcon=true;
           }
-          console.log(response);
         })
         .catch(function(error) {
           console.error(error);

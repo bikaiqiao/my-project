@@ -19,12 +19,13 @@
     position: absolute;
     top: 0.5rem;
     left: 18rem;
-}
-
-.FinputIcon {
     display: none;
 }
 
-.TinputIcon {
-    display: none;
+.el-icon-success {
+    color: #42c02e;
+}
+
+.el-icon-error {
+    color: red;
 }
