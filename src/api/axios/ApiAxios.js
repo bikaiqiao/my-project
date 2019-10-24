@@ -11,14 +11,12 @@ const httpService = axios.create({
 // request拦截器
 httpService.interceptors.request.use(
     config => {
-        console.log(config.data.requestInterceptors);
         if (config.data.requestInterceptors == false) {
 
         } else {
             // 让每个请求携带token
             config.headers.Authorization = 'Bearer ' + Cookies.get("token");
         }
-        console.log(config)
         return config;
     },
     error => {
@@ -80,7 +78,7 @@ export function getWithURL(url, params = {}) {
                 params: params,
                 data: { requestInterceptors: false }
             }).then(response => {
-                console.log(response);
+                // console.log(response);
                 resolve(response);
             })
             .catch(error => {

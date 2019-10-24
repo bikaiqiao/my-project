@@ -99,9 +99,9 @@ export default {
         .then((response) => {
           if (response.data == true) {
             //如果返回值是true的话则用户名不能通过
-            this.isInputIcon=true ;
+            console.log(this);
+            this.isInputIcon=true;
             this.notInputIcon=false;
-            // console.log(response);
           } else {
             //如果返回值不是true的话则用户名可以通过
             this.isInputIcon=false;
