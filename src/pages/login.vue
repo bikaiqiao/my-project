@@ -20,8 +20,13 @@
               <router-link to="register" class="box none">注册</router-link>
             </div>
             <div class="form-box">
-              <el-input v-model="userName" placeholder="用户名" autofocus="true"></el-input>
-              <el-input v-model="password" placeholder="密码" show-password></el-input>
+              <div class="input_box">
+                <el-input v-model="userName" placeholder="用户名" autofocus="true"></el-input>
+                <el-input v-model="password" placeholder="密码" show-password></el-input>
+                <div class="check_box">
+                  <el-checkbox v-model="checked">记住我</el-checkbox>
+                </div>
+              </div>
             </div>
             <div>
               <button class="login-button" @click="login()">登入</button>
@@ -36,23 +41,7 @@
     <el-footer>&nbsp;</el-footer>
   </el-container>
 </template>
-<style src="../../static\css\login.css"></style>
-
-
-// <script>
-// import login from "./../../components/login.vue";
-// export default {
-//   // data() {
-//   //   return {};
-//   // },
-//   name:"login",
-//   components: {
-//     login
-//   }
-// };
-//
-//
-</script>
+<style src="../../static/css/login.css"></style>
 
 
 <script>
@@ -62,7 +51,8 @@ export default {
   data() {
     return {
       userName: "",
-      password: ""
+      password: "",
+      checked:true,
     };
   },
   methods: {
@@ -100,18 +90,10 @@ export default {
       var y = time--;
       if (y > 0) {
         setTimeout(this.reverseTime, 1000);
-      }else{
+      } else {
         this.$router.replace({ path: "/index" });
       }
     }
-    /*
-     *下面的代码暂时还不能使用
-     */
-    // myAlert() {
-    //   this.$alert("<strong>这是 <i>HTML</i> 片段</strong>", "HTML 片段", {
-    //     dangerouslyUseHTMLString: true
-    //   });
-    // },
   }
 };
 </script>

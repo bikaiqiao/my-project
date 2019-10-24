@@ -69,16 +69,17 @@
               <el-row>
                   <!-- 走马灯和列表左面的空白 栅格中需要有内容才可以被撑开，故而写一个&nbsp-->
                 <el-col :span="4">&nbsp;</el-col>
-                <!-- 走马灯下面的无序列表 -->
+                <!-- 走马灯 -->
                 <el-col :span="20">
                   <el-carousel trigger="click" height="270px">
                     <el-carousel-item v-for="item in 4" :key="item" class="carouselFigure">
                       <h3 class="small">{{ item }}</h3>
                     </el-carousel-item>
                   </el-carousel>
+                  <!-- 走马灯下面的无序列表 -->
                   <div class="list-container">
                     <div class="note-list">
-                      <li id>
+                      <li>
                         <div class="content">
                           <a class="title">在职场要慎重使用微信</a>
                           <p class="abstract">

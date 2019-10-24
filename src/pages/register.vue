@@ -1,7 +1,8 @@
 <template>
   <el-container>
+    <div class="bakcground_picture">&nbsp;</div>
     <el-header>
-      <div style="position:absolute;top:56px;margin-left:50px;">
+      <div class="position_img" style="position:absolute;top:56px;margin-left:50px;">
         <router-link to="index">
           <img src="static\picture\logo.png" />
         </router-link>
@@ -20,18 +21,20 @@
           </div>
           <div>
             <div class="form-box">
-              <el-input v-model="userName" placeholder="用户名" autofocus="true" @blur="loseFocus()"></el-input>
-              <div v-bind:class="{ display_inline: isInputIcon }" class="InputIcon">
-                <i class="el-icon-error"></i>
+              <div class="input_box">
+                <el-input v-model="userName" placeholder="用户名" autofocus="true" @blur="loseFocus()"></el-input>
+                <div v-bind:class="{ display_inline: isInputIcon }" class="InputIcon">
+                  <i class="el-icon-error"></i>
+                </div>
+                <div v-bind:class="{ display_inline: notInputIcon }" class="InputIcon">
+                  <i class="el-icon-success"></i>
+                </div>
+                <!-- <el-input v-model="telNumber" placeholder="手机号"></el-input> -->
+                <el-input v-model="password" placeholder="设置密码" show-password></el-input>
               </div>
-              <div  v-bind:class="{ display_inline: notInputIcon }" class="InputIcon">
-                <i class="el-icon-success"></i>
-              </div>
-              <!-- <el-input v-model="telNumber" placeholder="手机号"></el-input> -->
-              <el-input v-model="password" placeholder="设置密码" show-password></el-input>
             </div>
             <div>
-              <button class="register-button" @click="login()">注册</button>
+              <button class="register-button" @click="register()">注册</button>
             </div>
           </div>
         </el-col>
@@ -40,14 +43,11 @@
         </el-col>
       </el-row>
     </el-main>
-    <el-footer>
-      <div id="show"></div>
-      <button @click="button()">注册</button>
-    </el-footer>
+    <el-footer>&nbsp;</el-footer>
   </el-container>
 </template>
-<style src="../../static\css\login.css"></style>
-<style src="../../static\css\register.css"></style>
+<style src="../../static/css/login.css"></style>
+<style src="../../static/css/register.css"></style>
 <style>
 .TinputIcon {
   display: inline-block;
@@ -63,7 +63,7 @@
 <script>
 import qs from "qs";
 var time = 10;
-var responseCopy ={};
+var responseCopy = {};
 export default {
   data() {
     return {
@@ -74,7 +74,7 @@ export default {
     };
   },
   methods: {
-    login() {
+    register() {
       var userName = this.userName;
       var password = this.password;
       var Parameter = { userName: userName, userPassword: password };
@@ -92,31 +92,32 @@ export default {
           console.error(error);
         });
     },
-    loseFocus()  {
+    loseFocus() {
       var userName = this.userName;
+      if(document.getElementById(this.userName==" ")){
+        console.log(userName);
       this.$axios
         .getWithURL("is_username_duplicated/" + userName)
-        .then((response) => {
+        .then(response => {
           if (response.data == true) {
             //如果返回值是true的话则用户名不能通过
             console.log(this);
-            this.isInputIcon=true;
-            this.notInputIcon=false;
+            this.isInputIcon = true;
+            this.notInputIcon = false;
           } else {
             //如果返回值不是true的话则用户名可以通过
-            this.isInputIcon=false;
-            this.notInputIcon=true;
+            this.isInputIcon = false;
+            this.notInputIcon = true;
           }
         })
         .catch(function(error) {
           console.error(error);
         });
+        }
     },
     //倒计时函数
     reverseTime() {
-      var x = document.getElementById("show");
       var y = time--;
-      x.innerHTML = y;
       setTimeout(this.reverseTime, 1000);
     }
   }
