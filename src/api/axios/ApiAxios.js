@@ -7,6 +7,7 @@ const httpService = axios.create({
     baseURL: "http://localhost:8080", // url前缀
     timeout: 3000 // 请求超时时间
 });
+const URL = "http://localhost:8888/api/";
 
 // request拦截器
 httpService.interceptors.request.use(
@@ -73,7 +74,7 @@ export function get(url, params = {}) {
 export function getWithURL(url, params = {}) {
     return new Promise((resolve, reject) => {
         httpService({
-                url: ("http://localhost:8888/api/" + url),
+                url: (URL + url),
                 method: 'get',
                 params: params,
                 data: { requestInterceptors: false }
@@ -113,6 +114,7 @@ export function postWithURL(url, params) {
             url: ("http://localhost:8888/api/" + url),
             method: 'post',
             data: params,
+            data: { requestInterceptors: false }
             // headers: {
             //     'content': 'application/x-www-form-urlencoded'
             // }
