@@ -13,11 +13,15 @@ const URL = "http://localhost:8888/api/";
 httpService.interceptors.request.use(
     config => {
         if (config.data.requestInterceptors == false) {
-            // console.log(config);
+            console.log(config);
+            if (config.data.params) {
+                config.data = config.data.params;
+            }
         } else {
             // 让每个请求携带token
             config.headers.Authorization = 'Bearer ' + Cookies.get("token");
         }
+        console.log(config);
         return config;
     },
     error => {
@@ -37,6 +41,7 @@ httpService.interceptors.response.use(
         if (response.data.token) {
             Cookies.set('token', response.data.token)
         }
+        console.log(response)
         return response
     }, error => {
         // 对响应错误做些什么
@@ -111,13 +116,9 @@ export function post(url, params) {
 export function postWithURL(url, params) {
     return new Promise((resolve, reject) => {
         httpService({
-            url: ("http://localhost:8888/api/" + url),
+            url: (URL + url),
             method: 'post',
-            data: params,
-            requestInterceptors: false
-                // headers: {
-                //     'content': 'application/x-www-form-urlencoded'
-                // }
+            data: { params, requestInterceptors: false }
         }).then(response => {
             resolve(response);
         }).catch(error => {

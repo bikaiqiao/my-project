@@ -63,7 +63,6 @@ export default {
       var Parameter = { username: userName, password: password };
       var jsonParameter = JSON.stringify(Parameter);
       var qsParameter = qs.stringify(Parameter);
-      // console.log(qsParameter);
       //用于测试表单获得的数据
       // this.axios.get('https://www.tianqiapi.com/api/?version=v1&cityid=101110101&appid=[appid]&appsecret=[appsecret]', {
       this.$axios

@@ -35,8 +35,8 @@
             </div>
             <div>
               <button class="register-button" @click="register()">注册</button>
-              <div id="show">
-                <img :src="'data:image/jpg;base64,'+this.verifyPic" />
+              <div id="verify">
+                <img src="http://localhost:8888/api/verify_code" />
               </div>
             </div>
           </div>
@@ -83,131 +83,44 @@ export default {
   },
   methods: {
     applyVerify() {
-      let Base64 = require("js-base64").Base64;
-      this.$axios
-        .getWithURL("verify_code")
-        .then(response => {
-          // this.verifyPic = window.btoa(
-          //   window.encodeURIComponent(response.data)
-          // );
-
-          this.verifyPic = window.btoa(this.utf16ToUtf8(response.data));
-          console.log(this.verifyPic);
-          console.log(response);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    },
-    utf16ToUtf8(utf16Str) {
-      var utf8Arr = [];
-      var byteSize = 0;
-      for (var i = 0; i < utf16Str.length; i++) {
-        //获取字符Unicode码值
-        var code = utf16Str.charCodeAt(i);
-
-        //如果码值是1个字节的范围，则直接写入
-        if (code >= 0x00 && code <= 0x7f) {
-          byteSize += 1;
-          utf8Arr.push(code);
-
-          //如果码值是2个字节以上的范围，则按规则进行填充补码转换
-        } else if (code >= 0x80 && code <= 0x7ff) {
-          byteSize += 2;
-          utf8Arr.push(192 | (31 & (code >> 6)));
-          utf8Arr.push(128 | (63 & code));
-        } else if (
-          (code >= 0x800 && code <= 0xd7ff) ||
-          (code >= 0xe000 && code <= 0xffff)
-        ) {
-          byteSize += 3;
-          utf8Arr.push(224 | (15 & (code >> 12)));
-          utf8Arr.push(128 | (63 & (code >> 6)));
-          utf8Arr.push(128 | (63 & code));
-        } else if (code >= 0x10000 && code <= 0x10ffff) {
-          byteSize += 4;
-          utf8Arr.push(240 | (7 & (code >> 18)));
-          utf8Arr.push(128 | (63 & (code >> 12)));
-          utf8Arr.push(128 | (63 & (code >> 6)));
-          utf8Arr.push(128 | (63 & code));
-        }
-      }
-      return utf8Arr;
     },
     register() {
-      //如果已经访问过了则进行以下内容否则设置pageCount为1
-      // if (Cookies.get("pageCount")) {
-      //   Cookies.set("pageCount", Number(Cookies.get("pageCount")) + 1, {
-      //     expires: 7
-      //   });
-      //   var nowDate = new Date();
-      //   /*
-      //    *如果能查找到上一次访问页面的时间
-      //    *就先取到这个时间值
-      //    *然后对比现在的时间值
-      //    */
-      //   // Cookies.set("pageCountTime", nowDate);
-      //   // console.log(Cookies.get("pageCountTime"));
-      //   if (Cookies.get("pageCountTime")) {
-      //     var previousDate = new Date(Cookies.get("pageCountTime"));
-      //     Cookies.set("pageCountTime", nowDate);
-      //     // console.log(nowDate.getTime());
-      //     // console.log(previousDate.getTime());
-      //     console.log(nowDate.getTime() - previousDate.getTime());
-      //     if (nowDate.getTime() - previousDate.getTime() < 1000) {
-      //       console.log('pageVerify的值+1');
-      //       console.log(Cookies.get("pageVerify"));
-      //       Cookies.set("pageVerify",Number(Cookies.get("pageVerify"))+1)
-      //       if(Cookies.get("pageVerify")==3){
-      //         console.log("向后端发送请求")
-      //         Cookies.set("pageVerify",0);
-      //       }
-      //     }else{
-      //       Cookies.set("pageVerify",0);
-      //     }
-      //   }
-      // } else {
-      //   Cookies.set("pageCount", 1);
-      //   Cookies.set("pageCountTime", nowDate);
-      // }
-      var nowDate = new Date();
-      Cookies.set("pageCount_1", nowDate);
-      console.log(Cookies.get("pageCount_1"));
-      console.log(Cookies.get("pageCount_2"));
-      // console.log(Cookies.get("pageCount_1")!=un&&Cookies.get("pageCount_2"))
-      // var nowDate = new Date();
-      // if (
-      // Cookies.get("pageCount_1")&&Cookies.get("pageCount_2")&&Cookies.get("pageCount_3")
-      // ) {
-      //   Cookies.set("pageCount_3", Cookies.get("pageCont_2"));
-      //   Cookies.set("pageCount_2", Cookies.get("pageCont_1"));
-      //   Cookies.set("pageCount_1", nowDate);
-      //   console.log(Cookies.get("pageCount_1"));
-      //   console.log(Cookies.get("pageCount_2"));
-      //   console.log(Cookies.get("pageCount_3"));
-      // } else if (Cookies.get("pageCount_2") && Cookies.get("pageCount_3")) {
-      //   Cookies.set("pageCount_1", nowDate);
-      //   console.log(Cookies.get("pageCount_1"));
-      //   console.log(Cookies.get("pageCount_2"));
-      //   console.log(Cookies.get("pageCount_3"));
-      // } else if (Cookies.get("pageCount_3")) {
-      //   Cookies.set("pageCount_2", nowDate);
-      //   console.log(Cookies.get("pageCount_1"));
-      //   console.log(Cookies.get("pageCount_2"));
-      //   console.log(Cookies.get("pageCount_3"));
-      // } else {
-      //   Cookies.set("pageCount_3", nowDate);
-      //   if (
-      //     new Date(Cookies.get("pageCount_1")).getTime() -
-      //       new Date(Cookies.get("pageCount_2")).getTime() <
-      //       1000 &&
-      //     new Date(Cookies.get("pageCount_2")).getTime() -
-      //       new Date(Cookies.get("pageCount_3")).getTime() <
-      //       1000
-      //   ) {
-      //     console.log("向后端发送请求");
-      //   }
-      // }
+      如果已经访问过了则进行以下内容否则设置pageCount为1
+      if (Cookies.get("pageCount")) {
+        Cookies.set("pageCount", Number(Cookies.get("pageCount")) + 1, {
+          expires: 7
+        });
+        var nowDate = new Date();
+        /*
+         *如果能查找到上一次访问页面的时间
+         *就先取到这个时间值
+         *然后对比现在的时间值
+         */
+        // Cookies.set("pageCountTime", nowDate);
+        // console.log(Cookies.get("pageCountTime"));
+        if (Cookies.get("pageCountTime")) {
+          var previousDate = new Date(Cookies.get("pageCountTime"));
+          Cookies.set("pageCountTime", nowDate);
+          // console.log(nowDate.getTime());
+          // console.log(previousDate.getTime());
+          console.log(nowDate.getTime() - previousDate.getTime());
+          if (nowDate.getTime() - previousDate.getTime() < 1000) {
+            console.log('pageVerify的值+1');
+            console.log(Cookies.get("pageVerify"));
+            Cookies.set("pageVerify",Number(Cookies.get("pageVerify"))+1)
+            if(Cookies.get("pageVerify")==3){
+              console.log("向后端发送请求")
+              Cookies.set("pageVerify",0);
+            }
+          }else{
+            Cookies.set("pageVerify",0);
+          }
+        }
+      } else {
+        Cookies.set("pageCount", 1);
+        Cookies.set("pageCountTime", nowDate);
+      }
+      
       var userName = this.userName;
       var password = this.password;
       var Parameter = { userName: userName, userPassword: password };
