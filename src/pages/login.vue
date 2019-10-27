@@ -1,7 +1,8 @@
 <template>
   <el-container>
+    <div class="bakcground_picture">&nbsp;</div>
     <el-header>
-      <div style="position:absolute;top:56px;margin-left:50px;">
+      <div class="position_img" style="position:absolute;top:56px;margin-left:50px;">
         <router-link to="index">
           <img src="static\picture\logo.png" />
         </router-link>
@@ -52,7 +53,7 @@ export default {
     return {
       userName: "",
       password: "",
-      checked:true,
+      checked: true
     };
   },
   methods: {
@@ -69,14 +70,14 @@ export default {
         .postWithURL("login", qsParameter)
         .then(response => {
           // this.myAlert();
-          this.open1();
+          this.action();
           console.log(response);
         })
         .catch(function(error) {
           console.error(error);
         });
     },
-    open1() {
+    action() {
       this.$message({
         showClose: true,
         message: "登入成功,将在5秒后跳转",
@@ -91,7 +92,7 @@ export default {
       if (y > 0) {
         setTimeout(this.reverseTime, 1000);
       } else {
-        this.$router.replace({ path: "/index" });
+        this.$router.replace({ path: "/" });
       }
     }
   }

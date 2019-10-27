@@ -14,6 +14,12 @@
           <div class="grid-content"></div>
         </el-col>
         <el-col :span="8" class="el-box">
+          <div v-bind:class="{ display_inline: isInputIcon }" class="InputIcon">
+            <i class="el-icon-error"></i>
+          </div>
+          <div v-bind:class="{ display_inline: notInputIcon }" class="InputIcon">
+            <i class="el-icon-success"></i>
+          </div>
           <div class="grid-content">
             <router-link to="login" class="box none">登入</router-link>
             <a class="box pointer">·</a>
@@ -23,18 +29,15 @@
             <div class="form-box">
               <div class="input_box">
                 <el-input v-model="userName" placeholder="用户名" autofocus="true" @blur="loseFocus()"></el-input>
-                <div v-bind:class="{ display_inline: isInputIcon }" class="InputIcon">
-                  <i class="el-icon-error"></i>
-                </div>
-                <div v-bind:class="{ display_inline: notInputIcon }" class="InputIcon">
-                  <i class="el-icon-success"></i>
-                </div>
                 <!-- <el-input v-model="telNumber" placeholder="手机号"></el-input> -->
                 <el-input v-model="password" placeholder="设置密码" show-password></el-input>
               </div>
             </div>
             <div>
               <button class="register-button" @click="register()">注册</button>
+              <div id="show">
+                <img :src="'data:image/jpg;base64,'+this.verifyPic" />
+              </div>
             </div>
           </div>
         </el-col>
@@ -65,17 +68,72 @@
 // import qs from "qs";
 import Cookies from "js-cookie";
 var time = 10;
-var responseCopy = {};
 export default {
   data() {
     return {
       userName: "",
       password: "",
       isInputIcon: false,
-      notInputIcon: false
+      notInputIcon: false,
+      verifyPic: ""
     };
   },
+  mounted() {
+    this.applyVerify();
+  },
   methods: {
+    applyVerify() {
+      let Base64 = require("js-base64").Base64;
+      this.$axios
+        .getWithURL("verify_code")
+        .then(response => {
+          // this.verifyPic = window.btoa(
+          //   window.encodeURIComponent(response.data)
+          // );
+
+          this.verifyPic = window.btoa(this.utf16ToUtf8(response.data));
+          console.log(this.verifyPic);
+          console.log(response);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    utf16ToUtf8(utf16Str) {
+      var utf8Arr = [];
+      var byteSize = 0;
+      for (var i = 0; i < utf16Str.length; i++) {
+        //获取字符Unicode码值
+        var code = utf16Str.charCodeAt(i);
+
+        //如果码值是1个字节的范围，则直接写入
+        if (code >= 0x00 && code <= 0x7f) {
+          byteSize += 1;
+          utf8Arr.push(code);
+
+          //如果码值是2个字节以上的范围，则按规则进行填充补码转换
+        } else if (code >= 0x80 && code <= 0x7ff) {
+          byteSize += 2;
+          utf8Arr.push(192 | (31 & (code >> 6)));
+          utf8Arr.push(128 | (63 & code));
+        } else if (
+          (code >= 0x800 && code <= 0xd7ff) ||
+          (code >= 0xe000 && code <= 0xffff)
+        ) {
+          byteSize += 3;
+          utf8Arr.push(224 | (15 & (code >> 12)));
+          utf8Arr.push(128 | (63 & (code >> 6)));
+          utf8Arr.push(128 | (63 & code));
+        } else if (code >= 0x10000 && code <= 0x10ffff) {
+          byteSize += 4;
+          utf8Arr.push(240 | (7 & (code >> 18)));
+          utf8Arr.push(128 | (63 & (code >> 12)));
+          utf8Arr.push(128 | (63 & (code >> 6)));
+          utf8Arr.push(128 | (63 & code));
+        }
+      }
+      return utf8Arr;
+    },
     register() {
       //如果已经访问过了则进行以下内容否则设置pageCount为1
       // if (Cookies.get("pageCount")) {
@@ -115,8 +173,8 @@ export default {
       var nowDate = new Date();
       Cookies.set("pageCount_1", nowDate);
       console.log(Cookies.get("pageCount_1"));
-      console.log(Cookies.get("pageCount_2"))
-      console.log(Cookies.get("pageCount_1")!=undefined&&Cookies.get("pageCount_2")!=undefined)
+      console.log(Cookies.get("pageCount_2"));
+      // console.log(Cookies.get("pageCount_1")!=un&&Cookies.get("pageCount_2"))
       // var nowDate = new Date();
       // if (
       // Cookies.get("pageCount_1")&&Cookies.get("pageCount_2")&&Cookies.get("pageCount_3")
@@ -156,17 +214,17 @@ export default {
       //qs序列化暂时用不到
       // var qsParameter = qs.stringify(Parameter);
       var jsonParameter = JSON.stringify(Parameter);
-      // this.$axios
-      //   .postWithURL("sign_up", jsonParameter)
-      //   .then(function(response) {
-      //     console.log(response);
-      //     if (response.data.code == "-1") {
-      //       alert("用户名已经注册");
-      //     }
-      //   })
-      //   .catch(function(error) {
-      //     console.error(error);
-      //   });
+      this.$axios
+        .postWithURL("sign_up", jsonParameter)
+        .then(function(response) {
+          console.log(response);
+          // if (response.data.code == "-1") {
+          //   alert("用户名已经注册");
+          // }
+        })
+        .catch(function(error) {
+          console.error(error);
+        });
     },
     loseFocus() {
       var userName = this.userName;

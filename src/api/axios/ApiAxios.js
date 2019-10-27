@@ -13,7 +13,7 @@ const URL = "http://localhost:8888/api/";
 httpService.interceptors.request.use(
     config => {
         if (config.data.requestInterceptors == false) {
-
+            // console.log(config);
         } else {
             // 让每个请求携带token
             config.headers.Authorization = 'Bearer ' + Cookies.get("token");
@@ -114,10 +114,10 @@ export function postWithURL(url, params) {
             url: ("http://localhost:8888/api/" + url),
             method: 'post',
             data: params,
-            data: { requestInterceptors: false }
-            // headers: {
-            //     'content': 'application/x-www-form-urlencoded'
-            // }
+            requestInterceptors: false
+                // headers: {
+                //     'content': 'application/x-www-form-urlencoded'
+                // }
         }).then(response => {
             resolve(response);
         }).catch(error => {
