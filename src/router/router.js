@@ -23,6 +23,12 @@ const routes = [{
             import ("@/pages/index/index.vue")
     },
     {
+        path: '/manager',
+        name: 'manager',
+        component: () =>
+            import ("@/pages//manager.vue")
+    },
+    {
         path: '/test',
         name: 'test',
         component: () =>
