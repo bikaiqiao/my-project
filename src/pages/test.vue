@@ -28,7 +28,7 @@ export default {
         initialFrameWidth: "100%",
         // 关闭自动保存
         enableAutoSave: true,
-        toolbars: [["bold",'simpleupload','insertimage','inserttitle','undo', 'removeformat', ]]
+        // toolbars: [["bold",'simpleupload','insertimage','inserttitle','undo', 'removeformat', ]]
       },
       content: "",
     };

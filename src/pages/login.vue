@@ -30,7 +30,7 @@
               </div>
             </div>
             <div>
-              <button class="login-button" @click="login()">登入</button>
+              <el-button type="primary" class="login-button" @click="login()">登入</el-button>
             </div>
           </div>
         </el-col>
@@ -79,21 +79,12 @@ export default {
     action() {
       this.$message({
         showClose: true,
-        message: "登入成功,将在5秒后跳转",
+        message: "登入成功",
         type: "success",
-        duration: 5000
+        duration: 3000
       });
-      this.reverseTime();
+      this.$router.replace({ path: "/" });
     },
-    reverseTime() {
-      console.log(time);
-      var y = time--;
-      if (y > 0) {
-        setTimeout(this.reverseTime, 1000);
-      } else {
-        this.$router.replace({ path: "/" });
-      }
-    }
   }
 };
 </script>

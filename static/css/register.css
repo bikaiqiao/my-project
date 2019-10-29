@@ -29,3 +29,29 @@
 .el-icon-error {
     color: red;
 }
+
+.verifyInput {
+    width: 50%;
+    /* display: inline-block; */
+    float: left;
+}
+
+.verify {
+    width: 50%;
+    float: left;
+    /* text-align: center; */
+    padding-top: 0.3rem;
+}
+
+.loseHref {
+    cursor: pointer;
+    pointer-events: none;
+}
+
+.loseButton {
+    color: #fff;
+    background-color: #b3e19d;
+    border-color: #b3e19d;
+    /* cursor: not-allowed; */
+    pointer-events: none;
+}

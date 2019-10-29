@@ -31,13 +31,23 @@
                 <el-input v-model="userName" placeholder="用户名" autofocus="true" @blur="loseFocus()"></el-input>
                 <!-- <el-input v-model="telNumber" placeholder="手机号"></el-input> -->
                 <el-input v-model="password" placeholder="设置密码" show-password></el-input>
+                <div class="verifyInput">
+                  <el-input v-model="verifyCode" placeholder="输入验证码" show-password></el-input>
+                </div>
+                <div class="verify">
+                  <a @click="applyVerify()" v-bind:class="{loseHref:isloseHref}">
+                    <img :src="verifyPic" width="100%" />
+                  </a>
+                </div>
               </div>
             </div>
             <div>
-              <button class="register-button" @click="register()">注册</button>
-              <div id="verify">
-                <img src="http://localhost:8888/api/verify_code" />
-              </div>
+              <el-button
+                type="success"
+                class="register-button"
+                @click="register()"
+                v-bind:class="{loseButton:isloseButton}"
+              >注册</el-button>
             </div>
           </div>
         </el-col>
@@ -67,7 +77,7 @@
 //暂时用不到
 // import qs from "qs";
 import Cookies from "js-cookie";
-var time = 10;
+var time = 3;
 export default {
   data() {
     return {
@@ -75,70 +85,91 @@ export default {
       password: "",
       isInputIcon: false,
       notInputIcon: false,
-      verifyPic: ""
+      verifyPic: "",
+      isloseHref: false,
+      isloseButton: false,
+      verifyCode: ""
     };
   },
+  //实现用户刷新页面也仍然有验证码
+  // created() {
+  //   if (Cookies.get("loseButtonAndVerifyPic") == true) {
+  //     this.loseButtonAndVerifyPic();
+  //     this.reverseverifyTime();
+  //   }
+  // },
   mounted() {
     this.applyVerify();
+    // this.removeCookie();
   },
   methods: {
+    // removeCookie(){
+    //   Cookies.remove("pageCount_1");
+    //    Cookies.remove("pageCount_2");
+    //     Cookies.remove("pageCount_3");
+    // },
     applyVerify() {
-    },
-    register() {
-      如果已经访问过了则进行以下内容否则设置pageCount为1
-      if (Cookies.get("pageCount")) {
-        Cookies.set("pageCount", Number(Cookies.get("pageCount")) + 1, {
-          expires: 7
-        });
-        var nowDate = new Date();
-        /*
-         *如果能查找到上一次访问页面的时间
-         *就先取到这个时间值
-         *然后对比现在的时间值
-         */
-        // Cookies.set("pageCountTime", nowDate);
-        // console.log(Cookies.get("pageCountTime"));
-        if (Cookies.get("pageCountTime")) {
-          var previousDate = new Date(Cookies.get("pageCountTime"));
-          Cookies.set("pageCountTime", nowDate);
-          // console.log(nowDate.getTime());
-          // console.log(previousDate.getTime());
-          console.log(nowDate.getTime() - previousDate.getTime());
-          if (nowDate.getTime() - previousDate.getTime() < 1000) {
-            console.log('pageVerify的值+1');
-            console.log(Cookies.get("pageVerify"));
-            Cookies.set("pageVerify",Number(Cookies.get("pageVerify"))+1)
-            if(Cookies.get("pageVerify")==3){
-              console.log("向后端发送请求")
-              Cookies.set("pageVerify",0);
-            }
-          }else{
-            Cookies.set("pageVerify",0);
-          }
-        }
+      this.verifyPic = "http://localhost:8888/api/verify_code?" + Math.random();
+      console.log("函数被调用");
+      var nowDate = new Date();
+      console.log(Cookies.get("pageCount_1"));
+      if (Cookies.get("pageCount_1") == undefined) {
+        Cookies.set("pageCount_1", nowDate);
+        console.log(Cookies.get("pageCount_1"));
+      } else if (Cookies.get("pageCount_2") == undefined) {
+        console.log(Cookies.get("pageCount_1"));
+        console.log(Cookies.get("pageCount_2"));
+        Cookies.set("pageCount_2", nowDate);
       } else {
-        Cookies.set("pageCount", 1);
-        Cookies.set("pageCountTime", nowDate);
+        console.log(Cookies.get("pageCount_1"));
+        console.log(Cookies.get("pageCount_2"));
+        console.log(Cookies.get("pageCount_3"));
+        Cookies.set("pageCount_3", Cookies.get("pageCount_2"));
+        Cookies.set("pageCount_2", Cookies.get("pageCount_1"));
+        Cookies.set("pageCount_1", nowDate);
       }
-      
-      var userName = this.userName;
-      var password = this.password;
-      var Parameter = { userName: userName, userPassword: password };
-      //qs序列化暂时用不到
-      // var qsParameter = qs.stringify(Parameter);
-      var jsonParameter = JSON.stringify(Parameter);
-      this.$axios
-        .postWithURL("sign_up", jsonParameter)
-        .then(function(response) {
-          console.log(response);
-          // if (response.data.code == "-1") {
-          //   alert("用户名已经注册");
-          // }
-        })
-        .catch(function(error) {
-          console.error(error);
-        });
+      if (
+        new Date(Cookies.get("pageCount_1")).getTime() -
+          new Date(Cookies.get("pageCount_2")).getTime() <
+          1000 &&
+        new Date(Cookies.get("pageCount_2")).getTime() -
+          new Date(Cookies.get("pageCount_3")).getTime() <
+          1000
+      ) {
+        this.loseButtonAndVerifyPic();
+        this.reverseverifyTime();
+        Cookies.set("loseButtonAndVerifyPic", true);
+      }
     },
+    //失去点验证码的样式设置和提醒
+    loseButtonAndVerifyPic() {
+      this.isloseHref = true;
+      this.isloseButton = true;
+      console.log("禁止用户点验证码三秒钟");
+      this.$message({
+        showClose: true,
+        message: "点击验证码次数过多",
+        type: "warning",
+        duration: 3000
+      });
+    },
+    isButtonAndVerifyPic() {
+      this.isloseHref = false;
+      this.isloseButton = false;
+    },
+    //倒计时验证码可以重新刷新
+    reverseverifyTime() {
+      console.log(time);
+      var y = time--;
+      if (y > 0) {
+        setTimeout(this.reverseverifyTime, 1000);
+      } else {
+        this.isButtonAndVerifyPic();
+        Cookies.set("loseButtonAndVerifyPic", false);
+        time = 3;
+      }
+    },
+    //测试是否用户名是否重复
     loseFocus() {
       var userName = this.userName;
       if (this.userName.trim() != "") {
@@ -163,10 +194,46 @@ export default {
         this.notInputIcon = false;
       }
     },
-    //倒计时函数
+    //注册发送的ajax请求
+    register() {
+      var userName = this.userName;
+      var password = this.password;
+      var verifyCode = this.verifyCode;
+      var Parameter = {
+        userName: userName,
+        userPassword: password
+        // verifyCode: verifyCode
+      };
+      var jsonParameter = JSON.stringify(Parameter);
+      var qsParameter = qs.stringify(Parameter);
+      this.$axios
+        .postWithURL("sign_up", qsParameter)
+        .then(function(response) {
+          this.action();
+        })
+        .catch(function(error) {
+          console.error(error);
+        });
+    },
+    //注册成功的跳转
+    action() {
+      this.$message({
+        showClose: true,
+        message: "注册成功,将在3秒后跳转",
+        type: "success",
+        duration: 5000
+      });
+      this.reverseTime();
+    },
+    //注册成功跳转倒计时
     reverseTime() {
+      console.log(time);
       var y = time--;
-      setTimeout(this.reverseTime, 1000);
+      if (y > 0) {
+        setTimeout(this.reverseTime, 1000);
+      } else {
+        this.$router.replace({ path: "/" });
+      }
     }
   }
 };
