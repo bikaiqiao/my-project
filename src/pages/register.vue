@@ -46,8 +46,8 @@
     </el-footer>
   </el-container>
 </template>
-<style src="../../static\css\login.css"></style>
-<style src="../../static\css\register.css"></style>
+<style src="../../static/css/login.css"></style>
+<style src="../../static/css/register.css"></style>
 <style>
 .TinputIcon {
   display: inline-block;
@@ -94,12 +94,13 @@ export default {
     },
     loseFocus()  {
       var userName = this.userName;
-      this.$axios
-        .getWithURL("is_username_duplicated/" + userName)
-        .then((response) => {
-          if (response.data == true) {
+      //this.$axios
+        //.getWithURL("is_username_duplicated/" + userName)
+        //.then((response) => {
+          //if (response.data == true) {
+          if (userName == 11111){
             //如果返回值是true的话则用户名不能通过
-            this.isInputIcon=true ;
+            this.isInputIcon=true;
             this.notInputIcon=false;
             // console.log(response);
           } else {
@@ -107,10 +108,10 @@ export default {
             this.isInputIcon=false;
             this.notInputIcon=true;
           }
-        })
-        .catch(function(error) {
-          console.error(error);
-        });
+        //})
+        //.catch(function(error) {
+          //console.error(error);
+        //});
     },
     //倒计时函数
     reverseTime() {

@@ -22,6 +22,12 @@ const routes = [{
         component: () =>
             import ("@/pages/index/index.vue")
     },
+    {
+        path: '/manager',
+        name: 'manager',
+        component: () =>
+            import ("@/pages//manager.vue")
+    },
 ];
 
 export default new Router({
