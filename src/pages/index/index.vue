@@ -3,13 +3,9 @@
     <!-- 头部是导航栏 -->
     <el-header>
       <!-- 头部的导航栏被分成两个部分 -->
-      <el-menu
-        :default-active="activeIndex"
-        class="el-menu-demo"
-        mode="horizontal"
-      >
-      <!-- 下面注释标签中的内容不知道如何使用故先备注 -->
-      <!-- @select="handleSelect" -->
+      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
+        <!-- 下面注释标签中的内容不知道如何使用故先备注 -->
+        <!-- @select="handleSelect" -->
         <el-menu-item index="0">
           <img src="static\picture\logo.png" height="20px;" />
         </el-menu-item>
@@ -64,30 +60,33 @@
       <el-container>
         <el-main>
           <el-row>
-              <!-- 走马灯和无序列表的内容和侧边栏内容在一个row中 -->
+            <!-- 走马灯和无序列表的内容和侧边栏内容在一个row中 -->
             <el-col :span="16">
               <el-row>
-                  <!-- 走马灯和列表左面的空白 栅格中需要有内容才可以被撑开，故而写一个&nbsp-->
+                <!-- 走马灯和列表左面的空白 栅格中需要有内容才可以被撑开，故而写一个&nbsp-->
                 <el-col :span="4">&nbsp;</el-col>
-                <!-- 走马灯下面的无序列表 -->
+                <!-- 走马灯 -->
                 <el-col :span="20">
-                  <el-carousel trigger="click" height="270px">
-                    <el-carousel-item v-for="item in 4" :key="item" class="carouselFigure">
-                      <h3 class="small">{{ item }}</h3>
-                    </el-carousel-item>
-                  </el-carousel>
+                  <div class="rotationChart">
+                    <el-carousel trigger="click" height="270px">
+                      <el-carousel-item v-for="item in 4" :key="item" class="carouselFigure">
+                        <h3 class="small">{{ item }}</h3>
+                      </el-carousel-item>
+                    </el-carousel>
+                  </div>
+                  <!-- 走马灯下面的无序列表 -->
                   <div class="list-container">
-                    <div class="note-list">
-                      <li id>
+                    <ul class="noteList">
+                      <li class="liList">
+                        <img src="static/picture/pic.jpg" align="right" width="150" height="100" />
+                        <h2 class="titleClass">
+                          <a href>优秀的人一直比较厉害</a>
+                        </h2>
                         <div class="content">
-                          <a class="title">在职场要慎重使用微信</a>
-                          <p class="abstract">
-                            在职场中，微信已经成为上下级和同级之间沟通交流的重要工具。使用微信进行交流的时候，我们一般要么通过文字，要么通过语音这
-                            <br />两种方式。 在职场中与领导...
-                          </p>
+                          <p>记得在知乎上有一个问题“班上曾经的第一名现在怎么样了”，这个问题下面有很多的回答，我看了许多以后发现一个规律，那就是曾经的第一名现在来说都不错，...</p>
                         </div>
                       </li>
-                    </div>
+                    </ul>
                   </div>
                 </el-col>
               </el-row>
@@ -136,19 +135,19 @@
 </template>
 <style src="../../../static\css\index.css"></style>
 <script>
-  export default {
-    data() {
-      return {
-        activeIndex: '1',
-        value1:true,
-        value2:true,
-        select:'',
-      };
-    },
-    methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
-      }
+export default {
+  data() {
+    return {
+      activeIndex: "1",
+      value1: true,
+      value2: true,
+      select: ""
+    };
+  },
+  methods: {
+    handleSelect(key, keyPath) {
+      console.log(key, keyPath);
     }
   }
+};
 </script>

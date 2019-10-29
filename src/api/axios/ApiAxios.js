@@ -7,18 +7,21 @@ const httpService = axios.create({
     baseURL: "http://localhost:8080", // url前缀
     timeout: 3000 // 请求超时时间
 });
+const URL = "http://localhost:8888/api/";
 
 // request拦截器
 httpService.interceptors.request.use(
     config => {
-        console.log(config.data.requestInterceptors);
         if (config.data.requestInterceptors == false) {
-
+            console.log(config);
+            if (config.data.params) {
+                config.data = config.data.params;
+            }
         } else {
             // 让每个请求携带token
             config.headers.Authorization = 'Bearer ' + Cookies.get("token");
         }
-        console.log(config)
+        console.log(config);
         return config;
     },
     error => {
@@ -38,6 +41,7 @@ httpService.interceptors.response.use(
         if (response.data.token) {
             Cookies.set('token', response.data.token)
         }
+        console.log(response)
         return response
     }, error => {
         // 对响应错误做些什么
@@ -75,12 +79,12 @@ export function get(url, params = {}) {
 export function getWithURL(url, params = {}) {
     return new Promise((resolve, reject) => {
         httpService({
-                url: ("http://localhost:8888/api/" + url),
+                url: (URL + url),
                 method: 'get',
                 params: params,
                 data: { requestInterceptors: false }
             }).then(response => {
-                console.log(response);
+                // console.log(response);
                 resolve(response);
             })
             .catch(error => {
@@ -112,12 +116,9 @@ export function post(url, params) {
 export function postWithURL(url, params) {
     return new Promise((resolve, reject) => {
         httpService({
-            url: ("http://localhost:8888/api/" + url),
+            url: (URL + url),
             method: 'post',
-            data: params,
-            // headers: {
-            //     'content': 'application/x-www-form-urlencoded'
-            // }
+            data: { params, requestInterceptors: false }
         }).then(response => {
             resolve(response);
         }).catch(error => {
