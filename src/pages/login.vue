@@ -1,13 +1,7 @@
 <template>
   <el-container>
     <div class="bakcground_picture">&nbsp;</div>
-    <el-header>
-      <div class="position_img" style="position:absolute;top:56px;margin-left:50px;">
-        <router-link to="index">
-          <img src="static\picture\logo.png" />
-        </router-link>
-      </div>
-    </el-header>
+    <el-header><myhead></myhead></el-header>
     <el-main>
       <el-row>
         <el-col :span="8" class="el-box">
@@ -46,9 +40,13 @@
 
 
 <script>
+import myhead from "./../components/header.vue";
 import qs from "qs";
 var time = 5;
 export default {
+  components: {
+    myhead
+  },
   data() {
     return {
       userName: "",

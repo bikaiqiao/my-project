@@ -109,7 +109,7 @@ export default {
     //     Cookies.remove("pageCount_3");
     // },
     applyVerify() {
-      this.verifyPic = "http://localhost:8888/api/verify_code?" + Math.random();
+      this.verifyPic = "http://192.168.1.129:8080/api/verify_code?" + Math.random();
       console.log("函数被调用");
       var nowDate = new Date();
       console.log(Cookies.get("pageCount_1"));

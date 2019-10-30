@@ -7,7 +7,7 @@ const httpService = axios.create({
     baseURL: "http://localhost:8080", // url前缀
     timeout: 3000 // 请求超时时间
 });
-const URL = "http://localhost:8888/api/";
+const URL = "http://192.168.1.129:8080/api/";
 
 // request拦截器
 httpService.interceptors.request.use(

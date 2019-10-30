@@ -34,6 +34,25 @@ const routes = [{
         component: () =>
             import ("@/pages/test.vue")
     },
+    {
+        path: '/wangEditor',
+        name: 'wangEditor',
+        component: () =>
+            import ("@/pages/wangEditor.vue")
+    },
+    {
+        path: '/mavonEditor',
+        name: 'mavonEditor',
+        component: () =>
+            import ("@/pages/mavonEditor.vue")
+    },
+    {
+        path: '/components',
+        name: 'components',
+        component: () =>
+            import ("@/pages/components.vue")
+    },
+
 ];
 
 export default new Router({
