@@ -103,8 +103,6 @@
     </el-container>
   </el-container>
 </template>
-
-<style src="../../static/css/login.css"></style>
 <style src="../../static/css/manager.css"></style>
 
 <script>

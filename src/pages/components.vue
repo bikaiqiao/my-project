@@ -1,13 +1,17 @@
 <template>
-    <myHead></myHead>
+  <test :text="text"></test>
 </template>
 
 <script>
-
-import myHead from "./../components/head.vue";
+import test from "./../components/components.vue";
 export default {
   components: {
-    myHead
+    test
+  },
+  data() {
+    return {
+      text:1234,
+    }
   }
 };
 </script>

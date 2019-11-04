@@ -5,7 +5,8 @@ import App from './App'
 import router from './router/router.js'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import axios from './api/axios/ApiAxios.js'
+import axios from './js/axios/ApiAxios'
+import store from './store/store.js'
 // import './config/rem'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
@@ -21,6 +22,7 @@ new Vue({
     el: '#app',
     'el': '#main',
     router,
+    store,
     components: { App },
     template: '<App/>',
     data() {
