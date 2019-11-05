@@ -141,10 +141,6 @@
 <style src="../../static/css/manager.css"></style>
 
 <script>
-import headers from './headtop.vue'
-	components: {
-	   headers
-	}
   export default {
     data() {
       return {
