@@ -138,7 +138,6 @@
     </el-container>
   </el-container>
 </template>
-
 <style src="../../static/css/manager.css"></style>
 
 <script>

@@ -5,22 +5,22 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const routes = [{
-        path: '/login',
-        name: 'login',
-        component: () =>
-            import ("@/pages/login.vue")
-    },
-    {
-        path: '/register',
-        name: 'register',
-        component: () =>
-            import ("@/pages/register.vue")
-    },
-    {
         path: '/',
         name: 'index',
         component: () =>
-            import ("@/pages/index/index.vue")
+            import ("@/pages/index.vue")
+    },
+    {
+        path: '/entry',
+        name: 'entry',
+        component: () =>
+            import ("@/pages/entry.vue")
+    },
+    {
+        path: '/layout',
+        name: 'layout',
+        component: () =>
+            import ("@/components/layout.vue")
     },
     {
         path: '/manager',
@@ -32,14 +32,27 @@ const routes = [{
         path: '/test',
         name: 'test',
         component: () =>
-            import ("@/pages/test.vue")
+            import ("@/pages/components")
     },
     {
-        path: '/headtop',
-        name: 'headtop',
+        path: '/wangEditor',
+        name: 'wangEditor',
         component: () =>
-            import ("@/pages/headtop.vue")
+            import ("@/pages/wangEditor.vue")
     },
+    {
+        path: '/mavonEditor',
+        name: 'mavonEditor',
+        component: () =>
+            import ("@/pages/mavonEditor.vue")
+    },
+    {
+        path: '/components',
+        name: 'components',
+        component: () =>
+            import ("@/pages/components.vue")
+    },
+
 ];
 
 export default new Router({

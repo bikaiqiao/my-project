@@ -1,0 +1,80 @@
+.el-container {
+    // .imgBG {
+    >img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+    // }
+    /*
+        *失败
+    */
+    // background-image: url(/../picture/logo.png);
+    // background-size: 100% 100%;
+    // width: 100%;
+    // z-index: 10;
+    // position: absolute;
+}
+
+.el-col-8:nth-child(2) {
+    border: {
+        wdith: 1rem;
+        radius: 10rem;
+        color: black;
+    }
+    margin-top:3%;
+    padding: {
+        top: 3%;
+        bottom: 3%;
+    }
+    background-image: radial-gradient(rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0));
+}
+
+.imgPosition {
+    display: inline-block;
+    margin-left: 5%;
+    img {
+        position: absolute;
+        z-index: 1;
+    }
+}
+
+.content {
+    .contentSwitchBox {
+        padding: 0 0 5% 0;
+        width: 60%;
+        margin: 0 auto;
+        height: 100px;
+    }
+    .switchBox {
+        margin: 0 auto;
+        padding: 2.5% 5%;
+        &:hover {
+            border-bottom: 0.15rem solid #CD5C5C;
+            cursor: pointer;
+        }
+    }
+    .leftSwitch {
+        margin: 0 0 0 20%;
+        float: left;
+    }
+    .rightSwitch {
+        margin: 0 20% 0 0;
+        float: right;
+    }
+    font: {
+        size: 1.3rem;
+    }
+    margin: {
+        top: 5%;
+        bottom: 5%;
+    }
+}
+
+.loginButton {
+    border-bottom: 0.15rem solid #CD5C5C;
+}
+
+.registerButton {
+    border-bottom: 0.15rem solid #CD5C5C;
+}

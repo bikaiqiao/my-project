@@ -21,6 +21,8 @@ npm run build --report
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 需要下载axios和element-ui
+富文本编辑器：
+npm i vue-ueditor-wrap
 
 router中配置路由，
 compents创建组件，

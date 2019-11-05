@@ -1,0 +1,37 @@
+.articleTitleBox {
+    font-size: 2rem;
+    margin: 1rem 0;
+    a {
+        color: black;
+    }
+}
+
+.articleContainerBox {
+    width: 100%;
+    height: 6rem;
+    font-size: 1rem;
+    color: #999;
+    padding-bottom: 1rem;
+    // 允许长单词或地址换行到下一行
+    word-wrap: break-word;
+    //在恰当的断字点换行
+    word-break: normal;
+    border-bottom: {
+        width: 0.1rem;
+        style: solid;
+        color: black;
+    }
+    img {
+        width: 20%;
+        // height: 20%;
+    }
+}
+
+.articleImgBox {
+    width: 20%;
+    // float: right;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}

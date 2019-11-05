@@ -1,0 +1,38 @@
+.mianBox {
+    padding-top: 5%;
+    .inputBox {
+        width: 60%;
+        margin: 0 auto;
+    }
+    .buttomBox {
+        width: 40%;
+        margin: 0 auto;
+        .checkBox {
+            float: left;
+        }
+        .forgetPassword {
+            a {
+                font: {
+                    color: #F56C6C;
+                }
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+            float: right;
+        }
+    }
+    .buttonBox {
+        width: 40%;
+        margin: 10% auto 5%;
+        .el-button {
+            font-size: 1.2rem;
+            width: 100%;
+            color: #8B4726;
+            background-color: #F56C6C;
+            &:hover {
+                color: white;
+            }
+        }
+    }
+}

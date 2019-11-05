@@ -1,0 +1,70 @@
+.mianBox {
+    padding-top: 5%;
+    position: relative;
+    .inputIcon {
+        position: absolute;
+        right: 14%;
+        top: 18%;
+        display: none;
+    }
+    .el-icon-error {
+        color: red;
+    }
+    .el-icon-success {
+        color: rgb(18, 219, 18);
+    }
+    .display_inline {
+        display: inline-block;
+    }
+    .inputBox {
+        width: 60%;
+        margin: 0 auto;
+    }
+    .checkBox {
+        padding: {
+            top: 2%;
+            left: 25%;
+        }
+    }
+    .verifyBox {
+        width: 40%;
+        margin: 0 auto;
+        .verifyInputBox {
+            float: left;
+            margin: 0 auto;
+            width: 40%;
+        }
+        .imgBox {
+            float: right;
+            width: 40%;
+            height: 115px;
+            .loseHref {
+                cursor: pointer;
+                pointer-events: none;
+            }
+        }
+    }
+    .buttonBox {
+        margin: {
+            top: 3%;
+            left: 30%;
+            right: 30%;
+        }
+        .el-button {
+            font-size: 1.2rem;
+            width: 100%;
+            color: #8B4726;
+            background-color: #9370DB;
+            &:hover {
+                color: white;
+            }
+        }
+        .loseButton {
+            color: #fff;
+            background-color: #b3e19d;
+            border-color: #b3e19d;
+            /* cursor: not-allowed; */
+            pointer-events: none;
+        }
+    }
+}
