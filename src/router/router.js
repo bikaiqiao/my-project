@@ -34,6 +34,12 @@ const routes = [{
         component: () =>
             import ("@/pages/test.vue")
     },
+    {
+        path: '/headtop',
+        name: 'headtop',
+        component: () =>
+            import ("@/pages/headtop.vue")
+    },
 ];
 
 export default new Router({

@@ -1,0 +1,73 @@
+#member_lever{
+    height: 500px;
+    background-color: red;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 13px;
+}
+
+#lever_icon{
+    float: left;
+    height: 300px;
+    width: 300px;
+    background-color: salmon;
+    margin: 50px;
+}
+
+#lever{
+    height: 400px;
+    margin: 70px;
+    width: 2000px;
+}
+
+#lever_num{
+    color: #0084ff;
+    font-weight: 700;
+    float: left;
+    width: 1000px;
+    margin-left: 100px;
+    margin-bottom: 50px;
+}
+
+#lever_progress{
+    margin-left: 50px;
+    width: 1000px;
+    float: left;
+}
+
+#overview_main{
+    border-top: 1px solid #bebebe;
+    padding: 30px 0;
+    display: flex;
+}
+
+#read_count{
+    flex-grow: 1;
+    color: rgb(65, 206, 65);
+    text-align: center;
+}
+
+#agree_count{
+    flex-grow: 1;
+    text-align: center;
+}
+
+#fans_count{
+    flex-grow: 1;
+    text-align: center;
+}
+#overview{
+    margin: 20px;
+    padding: 20px;
+    border:1px solid blue;
+    background-color: blueviolet;
+    border-radius: 20px;
+}
+
+#creative_data{
+    margin: 20px;
+    padding: 20px;
+    border:1px solid blue;
+    background-color: blueviolet;
+    border-radius: 20px;
+}
