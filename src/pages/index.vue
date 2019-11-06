@@ -18,7 +18,7 @@
                         <li><router-link to="/goods">科技</router-link></li>
                         <li><router-link to="/goods">数码</router-link></li>
                         <li><router-link to="/goods">时尚</router-link></li>
-                        <li><router-link to="/goods">影视</router-link></li>
+                        <li><router-link to="/">影视</router-link></li>
                     </ul>
                 </div>
             </div>
