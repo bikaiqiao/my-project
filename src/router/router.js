@@ -17,16 +17,22 @@ const routes = [{
             import ("@/pages/entry.vue")
     },
     {
-        path: '/layout',
-        name: 'layout',
-        component: () =>
-            import ("@/components/layout.vue")
-    },
-    {
         path: '/manager',
         name: 'manager',
         component: () =>
             import ("@/pages//manager.vue")
+    },
+    {
+        path: '/wangEditor',
+        name: 'wangEditor',
+        component: () =>
+            import ("@/pages/wangEditor.vue")
+    },
+    {
+        path: '/mavonEditor',
+        name: 'mavonEditor',
+        component: () =>
+            import ("@/pages/mavonEditor.vue")
     },
     {
         path: '/test',
