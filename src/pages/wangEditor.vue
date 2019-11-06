@@ -33,9 +33,11 @@ export default {
     
     var list = [];
     var list2=[];
+    var reader = new FileReader();
     for(var i = 0; i<files.length; i++) {
       console.log(files[i])
-      list[i] = JSON.stringify(files[i]);
+      list[i] = reader.readAsBinaryString(files[i]);
+      console.log(list[i])
     }
     // var list2=JSON.stringify(list, { indices: false });
     //  var list2=JSON.stringify(list);
