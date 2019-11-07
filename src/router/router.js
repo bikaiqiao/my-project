@@ -29,6 +29,12 @@ const routes = [{
             import ("@/pages//manager.vue")
     },
     {
+        path: '/analytics',
+        name: 'analytics',
+        component: () =>
+            import ("@/pages//analytics.vue")
+    },
+    {
         path: '/test',
         name: 'test',
         component: () =>

@@ -1,4 +1,3 @@
-
 <template>
   <el-container>
     <el-header>
@@ -94,41 +93,14 @@
     </el-container>
   </el-container>
 </template>
+
 <style src="../../static/css/manager.css"></style>
 
 <script>
-  import myHead from "./../components/header.vue";
-  export default {
-    components: {
+import myHead from "./../components/header.vue";
+export default {
+   components: {
       myHead,
-    },
-    data() {
-      return {
-        activeIndex: '1',
-        value1:true,
-        value2:true,
-        select:'',
-        count:1,
-        member:13,
-        followers:3,
-        total_read:999,
-        yesterday_read:99,
-        lever:1,
-        post_num:56,
-        schedule:67,
-        articles:["How to study Vue","How to study Typescript","hahahha"],
-      };
-    },
-    methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      },
-    }
-  }
-</script>
+    }, 
+}
+</script>>

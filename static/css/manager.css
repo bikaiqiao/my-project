@@ -1,6 +1,20 @@
+.details{
+    align-self: center;
+    height: 50px;
+    margin: 20px 0;
+    display: flex;
+    color: #409EFF;
+    text-align: center;
+    display: block;
+}
+
+.el-header{
+    
+}
+
 #member_lever{
     height: 500px;
-    background-color: red;
+    background-color: #FFFFFF;
     margin: 20px;
     padding: 20px;
     border-radius: 13px;
@@ -43,8 +57,13 @@
 
 #read_count{
     flex-grow: 1;
-    color: rgb(65, 206, 65);
     text-align: center;
+    color: #909399;
+}
+
+#read_count_num{
+    margin: 15px 0;
+    color: black;
 }
 
 #agree_count{
@@ -52,22 +71,32 @@
     text-align: center;
 }
 
+#agree_count_num{
+    margin: 15px 0;
+}
+
 #fans_count{
     flex-grow: 1;
     text-align: center;
 }
+
+#fans_count_num{
+    margin: 15px 0;
+}
+
 #overview{
     margin: 20px;
     padding: 20px;
-    border:1px solid blue;
-    background-color: blueviolet;
+    border:1px solid #bebebe;
+    background-color: #FFFFFF;
     border-radius: 20px;
 }
 
 #creative_data{
     margin: 20px;
+    margin-top: 50px;
     padding: 20px;
     border:1px solid blue;
-    background-color: blueviolet;
+    background-color: #FFFFFF;
     border-radius: 20px;
 }
