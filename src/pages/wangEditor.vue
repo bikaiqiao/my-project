@@ -1,123 +1,73 @@
 <template>
-  <div class="editor">
-      <div ref="toolbar" class="toolbar">
-      </div>
-      <div ref="editor" class="text">
-      </div>
+  <div>
+    <div id="editorElem" ref="editor" style="text-align:left"></div>
+    <Button shape="circle" type="primary" v-on:click="getContent">submit</Button>
   </div>
 </template>
-
-<style lang="css">
-.editor {
-  width: 60%;
-  margin: 0 auto;
-}
-.toolbar {
-  border: 1px solid #ccc;
-}
-.text {
-  border: 1px solid #ccc;
-  height: 600px;
-}
-</style>
-
 <script>
-import E from 'wangeditor'
+import E from "wangeditor";
+import qs from "qs";
 export default {
-  name: 'Editorbar',
-  data () {
+  name: "editor",
+  data() {
     return {
-      editor: null,
-      info_: null
-    }
-  },
-  model: {
-    prop: 'value',
-    event: 'change'
-  },
-  props: {
-    value: {
-      type: String,
-      default: ''
-    },
-    isClear: {
-      type: Boolean,
-      default: false
-    }
-  },
-  watch: {
-    isClear (val) {
-      // 触发清除文本域内容
-      if (val) {
-        this.editor.txt.clear()
-        this.info_ = null
-      }
-    },
-    value (val) {
-      // 使用 v-model 时，设置初始值
-      this.editor.txt.html(val)
-    }
-  },
-  mounted () {
-    this.seteditor()
+      editor: "",
+      editorContent: ""
+    };
   },
   methods: {
-    seteditor () {
-      this.editor = new E(this.$refs.toolbar, this.$refs.editor)
-      this.editor.customConfig.uploadImgShowBase64 = true // base 64 存储图片
-      this.editor.customConfig.uploadImgServer = ''// 配置服务器端地址
-      this.editor.customConfig.uploadImgHeaders = {      }// 自定义 header
-      this.editor.customConfig.uploadFileName = '' // 后端接受上传文件的参数名
-      this.editor.customConfig.uploadImgMaxSize = 2 * 1024 * 1024 // 将图片大小限制为 2M
-      this.editor.customConfig.uploadImgMaxLength = 6 // 限制一次最多上传 3 张图片
-      this.editor.customConfig.uploadImgTimeout = 3 * 60 * 1000 // 设置超时时间
-      // 配置菜单
-      this.editor.customConfig.menus = [
-        'head', // 标题
-        'bold', // 粗体
-        'fontSize', // 字号
-        'fontName', // 字体
-        'italic', // 斜体
-        'underline', // 下划线
-        'strikeThrough', // 删除线
-        'foreColor', // 文字颜色
-        'backColor', // 背景颜色
-        'link', // 插入链接
-        'list', // 列表
-        'justify', // 对齐方式
-        'quote', // 引用
-        'emoticon', // 表情
-        'image', // 插入图片
-        'table', // 表格
-        'video', // 插入视频
-        'code', // 插入代码
-        'undo', // 撤销
-        'redo' // 重复
-      ]
-      this.editor.customConfig.uploadImgHooks = {
-        fail: (xhr, editor, result) => {
-          // 插入图片失败回调
-        },
-        success: (xhr, editor, result) => {
-          // 图片上传成功回调
-        },
-        timeout: (xhr, editor) => {
-          // 网络超时的回调
-        },
-        error: (xhr, editor) => {
-          // 图片上传错误的回调
-        },
-        customInsert: (insertImg, result, editor) => {
-          // 图片上传成功，插入图片的回调
-        }
-      }
-      this.editor.customConfig.onchange = (html) => {
-        this.info_ = html // 绑定当前逐渐地值
-        this.$emit('change', this.info_) // 将内容同步到父组件中
-      }
-      // 创建富文本编辑器
-      this.editor.create()
+    getContent: function() {
+      console.log(this.editorContent); //获取富文本内容
+      this.editor.txt.clear(); //清空富文本的内容
     }
+  },
+  mounted() {
+    // var editor = new E('#editorElem')
+    this.editor = new E(this.$refs.editor);
+    this.editor.customConfig.uploadImgShowBase64 = true; //图片以base64形式保存
+    this.editor.customConfig.uploadImgMaxLength = 5; // 限制一次最多上传 5 张图片
+    this.editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
+    this.editor.customConfig.customUploadImg = (files, insert) => {
+      // files 是 input 中选中的文件列表
+      // insert 是获取图片 url 后，插入到编辑器的方法
+    
+    var list = [];
+    var list2=[];
+    var reader = new FileReader();
+    for(var i = 0; i<files.length; i++) {
+      console.log(files[i])
+      list[i] = reader.readAsBinaryString(files[i]);
+      console.log(list[i])
+    }
+    // var list2=JSON.stringify(list, { indices: false });
+    //  var list2=JSON.stringify(list);
+    //  var list3=JSON.parse(files);
+    
+    this.$axios
+    .postWithURLWithToken( "article/image/add","11111", "22222",list)
+    .then(response => {
+      // this.myAlert();
+      console.log(response);
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
+
+      // insert(imgUrl)
+    };
+
+    //   // 上传代码返回结果之后，将图片插入到编辑器中
+    //   // insert(imgUrl);
+    // };
+    //如果内容发生了改变则修改editorContent中的内容
+    this.editor.customConfig.onchange = html => {
+      this.editorContent = html;
+    };
+    this.editor.customConfig.pasteTextHandle = content => {
+      //支持粘贴
+      return content;
+    };
+    this.editor.create();
   }
-}
+};
 </script>

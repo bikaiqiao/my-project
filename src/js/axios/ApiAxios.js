@@ -5,15 +5,16 @@ import { request } from 'http';
 // 创建axios实例
 const httpService = axios.create({
     baseURL: "http://localhost:8080", // url前缀
-    timeout: 3000 // 请求超时时间
+    timeout: 5000 // 请求超时时间
 });
-const URL = "http://192.168.1.129:8888/api/";
+// const URL = "http://192.168.1.129:8888/api/";
+const URL = "http://localhost:8888/api/";
+
 
 // request拦截器
 httpService.interceptors.request.use(
     config => {
         if (config.data.requestInterceptors == false) {
-            console.log(config);
             if (config.data.params) {
                 config.data = config.data.params;
             }
@@ -126,19 +127,37 @@ export function postWithURL(url, params) {
         });
     });
 }
+export function postWithURLWithToken(url, userName, title, list2) {
+    return new Promise((resolve, reject) => {
+        httpService({
+            url: (URL + url),
+            method: 'post',
+            data: {
+                userName: userName,
+                title: title,
+                list: list2,
+            },
+            //headers: { 'Content-Type': 'multipart/form-data' }
+        }).then(response => {
+            resolve(response);
+        }).catch(error => {
+            reject(error);
+        });
+    });
+}
 
 /*
  *  文件上传
  *  url:请求地址
  *  params:参数
  * */
-export function fileUpload(url, params = {}) {
+export function fileUpload(params = {}) {
     return new Promise((resolve, reject) => {
         httpService({
             url: url,
             method: 'post',
             data: params,
-            headers: { 'Content-Type': 'multipart/form-data' }
+            // headers: { 'Content-Type': 'multipart/form-data' }
         }).then(response => {
             resolve(response);
         }).catch(error => {
@@ -152,5 +171,6 @@ export default {
     post,
     fileUpload,
     postWithURL,
-    getWithURL
+    getWithURL,
+    postWithURLWithToken
 }

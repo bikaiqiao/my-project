@@ -14,7 +14,7 @@
       <el-input v-model="select" placeholder="搜索" style="width:70%"></el-input>
     </el-menu-item>
     <el-menu-item style="float:right">
-      <router-link to class="navNone">写文章</router-link>
+      <router-link to="/mavonEditor" class="navNone">写文章</router-link>
     </el-menu-item>
     <el-menu-item style="float:right">
       <router-link :to="{name:'entry', params: {entryData:false}}" class="navNone">注册</router-link>
