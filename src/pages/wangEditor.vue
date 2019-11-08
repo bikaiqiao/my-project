@@ -30,35 +30,23 @@ export default {
     this.editor.customConfig.customUploadImg = (files, insert) => {
       // files 是 input 中选中的文件列表
       // insert 是获取图片 url 后，插入到编辑器的方法
-    
-    var list = [];
-    var list2=[];
-    var reader = new FileReader();
-    for(var i = 0; i<files.length; i++) {
-      console.log(files[i])
-      list[i] = reader.readAsBinaryString(files[i]);
-      console.log(list[i])
-    }
-    // var list2=JSON.stringify(list, { indices: false });
-    //  var list2=JSON.stringify(list);
-    //  var list3=JSON.parse(files);
-    
-    this.$axios
-    .postWithURLWithToken( "article/image/add","11111", "22222",list)
-    .then(response => {
-      // this.myAlert();
-      console.log(response);
-    })
-    .catch(function(error) {
-      console.error(error);
-    });
-
-      // insert(imgUrl)
+      var data = new FormData();
+      //拼接四个对象进去
+      for (var i = 0; i < files.length; i++) {
+        data.append("files", files[i]);
+      } 
+      data.append("userName", "11111");
+      data.append("title", "22222");
+      this.$axios
+        .postWithURLWithToken("article/image/add", data)
+        .then(response => {
+          // 上传代码返回结果之后，将图片插入到编辑器中
+          insert(response.imgUrl);
+        })
+        .catch(function(error) {
+          console.error(error);
+        });
     };
-
-    //   // 上传代码返回结果之后，将图片插入到编辑器中
-    //   // insert(imgUrl);
-    // };
     //如果内容发生了改变则修改editorContent中的内容
     this.editor.customConfig.onchange = html => {
       this.editorContent = html;

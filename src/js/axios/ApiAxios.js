@@ -14,14 +14,13 @@ const URL = "http://localhost:8888/api/";
 // request拦截器
 httpService.interceptors.request.use(
     config => {
-        if (config.data.requestInterceptors == false) {
-            if (config.data.params) {
-                config.data = config.data.params;
-            }
-        } else {
-            // 让每个请求携带token
-            config.headers.Authorization = 'Bearer ' + Cookies.get("token");
-        }
+        // if (config.data.requestInterceptors == false) {
+        //     config.data = config.data.params;
+        // } else {
+        // 让每个请求携带token
+        config.headers.Authorization = 'Bearer ' + Cookies.get("token");
+        config.data = config.data.params;
+        // }
         console.log(config);
         return config;
     },
@@ -35,10 +34,6 @@ httpService.interceptors.request.use(
 //response拦截器
 httpService.interceptors.response.use(
     response => {
-        // 对响应数据做些什么
-        // if (response.token) {
-        //     this.$state.token.commit('SET_TOKEN', response.token);
-        // }
         if (response.data.token) {
             Cookies.set('token', response.data.token)
         }
@@ -67,7 +62,6 @@ export function get(url, params = {}) {
                 method: 'get',
                 params: params
             }).then(response => {
-                // console.log(response);
                 resolve(response);
             })
             .catch(error => {
@@ -85,7 +79,22 @@ export function getWithURL(url, params = {}) {
                 params: params,
                 data: { requestInterceptors: false }
             }).then(response => {
-                // console.log(response);
+                resolve(response);
+            })
+            .catch(error => {
+                console.error(response);
+                reject(error);
+            });
+    });
+}
+
+export function getWithURLWithToken(url, params = {}) {
+    return new Promise((resolve, reject) => {
+        httpService({
+                url: (URL + url),
+                method: 'get',
+                params: params,
+            }).then(response => {
                 resolve(response);
             })
             .catch(error => {
@@ -107,7 +116,6 @@ export function post(url, params) {
             method: 'post',
             data: params,
         }).then(response => {
-            console.log(params);
             resolve(response);
         }).catch(error => {
             reject(error);
@@ -127,17 +135,18 @@ export function postWithURL(url, params) {
         });
     });
 }
-export function postWithURLWithToken(url, userName, title, list2) {
+
+export function postWithURLWithToken(url, params) {
+    // console.log(params.get("userName"))
     return new Promise((resolve, reject) => {
         httpService({
             url: (URL + url),
             method: 'post',
             data: {
-                userName: userName,
-                title: title,
-                list: list2,
+                params
             },
-            //headers: { 'Content-Type': 'multipart/form-data' }
+            headers: { 'Content-Type': 'multipart/form-data;boundary=--------------------56423498738365' }
+
         }).then(response => {
             resolve(response);
         }).catch(error => {

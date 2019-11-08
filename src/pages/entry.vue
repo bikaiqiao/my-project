@@ -1,11 +1,9 @@
 <template>
   <el-container style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">
     <img src="static\picture\pic.jpg" />
+    <div class="imgBox"></div>
     <el-header>&nbsp;</el-header>
     <el-main>
-      <div class="imgPosition">
-        <img src="static/picture/logo.png" />
-      </div>
       <el-row>
         <el-col :span="8">&nbsp;</el-col>
         <el-col :span="8">

@@ -47,7 +47,6 @@ export default {
         .then(response => {
           // this.myAlert();
           this.action();
-          console.log(response);
         })
         .catch(function(error) {
           console.error(error);
