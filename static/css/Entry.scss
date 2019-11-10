@@ -1,5 +1,4 @@
 .el-container {
-    // .imgBG {
     img {
         width: 100%;
         height: 100%;
@@ -16,10 +15,17 @@
     }
 }
 
-.el-col-8:nth-child(2) {
+//他日必有用
+// .imghref {
+//     display: inline-block;
+//     width: 100%;
+//     height: 100%;
+//     position: absolute;
+//     z-index: 1;
+// }
+.el-col-8 {
     border: {
         wdith: 1rem;
-        radius: 10rem;
         color: black;
     }
     margin-top:3%;
@@ -39,7 +45,7 @@
     }
     .switchBox {
         margin: 0 auto;
-        padding: 2.5% 5%;
+        padding: 2.5% 3%;
         &:hover {
             border-bottom: 0.15rem solid #CD5C5C;
             cursor: pointer;
