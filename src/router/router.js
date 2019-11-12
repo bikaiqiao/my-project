@@ -56,7 +56,7 @@ const routes = [{
         path: '/test',
         name: 'test',
         component: () =>
-            import ("@/pages/components")
+            import ("@/pages/test.vue")
     },
 ];
 

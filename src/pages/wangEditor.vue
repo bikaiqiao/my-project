@@ -41,6 +41,7 @@ export default {
         .postWithURLWithToken("article/image/add", data)
         .then(response => {
           // 上传代码返回结果之后，将图片插入到编辑器中
+          console.log(response);
           insert(response.imgUrl);
         })
         .catch(function(error) {

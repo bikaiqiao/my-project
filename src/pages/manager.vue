@@ -87,7 +87,7 @@
         <div id="creative_data">
           <h1>创作数据</h1>
           <div>最近创作：</div>
-          <ul><li v-for="article in articles"><a href="/">{{article}}</a></li></ul>
+          <ul><li v-for="article in articles" :key="article"><a href="/">{{article}}</a></li></ul>
         </div>
       </el-main>
 
@@ -116,7 +116,11 @@
         lever:1,
         post_num:56,
         schedule:67,
-        articles:["How to study Vue","How to study Typescript","hahahha"],
+        articles:[
+          "How to study Vue",
+          
+          "How to study Typescript","hahahha"
+          ],
       };
     },
     methods: {

@@ -27,6 +27,7 @@
 </style>
 
 <script>
+import store from "./../store/store.js";
 import qs from "qs";
 export default {
   data: function() {
@@ -46,6 +47,7 @@ export default {
         .postWithURL("login", qsParameter)
         .then(response => {
           // this.myAlert();
+          this.$store.commit("login",username)
           this.action();
         })
         .catch(function(error) {
@@ -59,7 +61,7 @@ export default {
         type: "success",
         duration: 3000
       });
-      this.$router.replace({ path: "/" });
+      this.$router.push({ path: "/" });
     }
   }
 };
