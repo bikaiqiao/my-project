@@ -6,17 +6,14 @@
     <el-container>
 
       <el-aside width="200px">
-        <el-menu class="el-menu-vertical-demo" router @open="handleOpen" @close="handleClose" :default-openeds="['2']">
+        <el-menu class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-ice-cream-round"></i>
               <span>创作者中心</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/manager">帐号中心</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group>
-              <el-menu-item index="/account">帐号设置</el-menu-item>
+              <el-menu-item index="1-1">帐号中心</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="2">
@@ -25,7 +22,7 @@
               <span>统计中心</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/analytics">数据统计</el-menu-item>
+              <el-menu-item index="2-1">数据统计</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="3">
@@ -52,11 +49,9 @@
 
       <el-main>
         <div id="overview">
-          <h1>创作数据统计</h1>
+          <h1>充会员咯</h1>
           <div>
-            <ve-line :data="chartData"></ve-line>
-            <h1>数据2</h1>
-            <ve-line :data="data2"></ve-line>
+            超级会员双十一半价
           </div>
         </div>
       </el-main>
@@ -75,25 +70,5 @@ export default {
    components: {
       myHead,
     }, 
-    data () {
-      return {
-        chartData: {
-          columns: ['日期', '访问用户', '发布文章数量'],
-          rows: [
-            { '日期': '2018-05-22', '访问用户': 32371, '发布文章数量': 19810 },
-            { '日期': '2018-05-23', '访问用户': 12328, '发布文章数量': 4398 },
-            { '日期': '2018-05-24', '访问用户': 92381, '发布文章数量': 52910 }
-          ]
-        },
-        data2:{
-          columns: ['日期', '访问用户', '发布文章数量'],
-          rows: [
-            { '日期': '2018-05-22', '访问用户': 3371, '发布文章数量': 19810 },
-            { '日期': '2018-05-23', '访问用户': 1328, '发布文章数量': 4398 },
-            { '日期': '2018-05-24', '访问用户': 92381, '发布文章数量': 52910 }
-          ]
-        }
-      }
-    }
 }
 </script>>

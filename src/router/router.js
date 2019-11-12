@@ -64,6 +64,18 @@ const routes = [{
         component: () =>
             import ("@/pages/test.vue")
     },
+    {
+        path: '/member_centre',
+        name: 'memberCentre',
+        component: () =>
+            import ("@/pages//memberCentre.vue")
+    },
+    {
+        path: '/account',
+        name: 'account',
+        component: () =>
+            import ("@/pages//account.vue")
+    },
 ];
 
 export default new Router({
