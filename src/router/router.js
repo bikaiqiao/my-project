@@ -41,10 +41,34 @@ const routes = [{
             import ("@/pages/mavonEditor.vue")
     },
     {
+        path: '/writing',
+        name: 'writing',
+        component: () =>
+            import ("@/pages/writing.vue")
+    },
+    {
+        path: '/aside',
+        name: 'aside',
+        component: () =>
+            import ("@/components/aside.vue")
+    },
+    {
         path: '/test',
         name: 'test',
         component: () =>
-            import ("@/pages/components")
+            import ("@/pages/test.vue")
+    },
+    {
+        path: '/member_centre',
+        name: 'memberCentre',
+        component: () =>
+            import ("@/pages//memberCentre.vue")
+    },
+    {
+        path: '/account',
+        name: 'account',
+        component: () =>
+            import ("@/pages//account.vue")
     },
 ];
 

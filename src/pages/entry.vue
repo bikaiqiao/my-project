@@ -1,12 +1,12 @@
 <template>
   <el-container style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">
     <img src="static\picture\pic.jpg" />
-    <div class="imgBox"></div>
+    <div class="imgBox"><a class="imghref" href="/"></a></div>
     <el-header>&nbsp;</el-header>
     <el-main>
-      <el-row>
-        <el-col :span="8">&nbsp;</el-col>
-        <el-col :span="8">
+      <el-row type="flex" justify="center">
+        <!-- <el-col :span="8">&nbsp;</el-col> -->
+        <el-col :span="8" >
           <div class="content" v-if="login">
             <div class="contentSwitchBox">
               <div
@@ -46,7 +46,7 @@
             <register></register>
           </div>
         </el-col>
-        <el-col :span="8">&nbsp;</el-col>
+        <!-- <el-col :span="8">&nbsp;</el-col> -->
       </el-row>
     </el-main>
   </el-container>

@@ -128,7 +128,7 @@ export default {
           .getWithURL("is_username_duplicated/" + username)
           .then(response => {
             if (response.data == true) {
-              console.log(response);
+              // console.log(response);
               //如果返回值是true的话则用户名不能通过
               this.isInputIcon = true;
               this.notInputIcon = false;
