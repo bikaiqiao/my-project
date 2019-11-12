@@ -35,6 +35,12 @@ const routes = [{
             import ("@/pages/wangEditor.vue")
     },
     {
+        path: '/wangEditor2',
+        name: 'wangEditor2',
+        component: () =>
+            import ("@/pages/wangEditor2.vue")
+    },
+    {
         path: '/mavonEditor',
         name: 'mavonEditor',
         component: () =>

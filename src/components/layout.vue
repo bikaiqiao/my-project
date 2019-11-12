@@ -2,12 +2,17 @@
   <ul>
     <li v-for="i in list" :key="i.title">
       <div class="articleTitleBox">
-        <router-link to="">
+        <router-link to>
           <b>{{i.title}}</b>
         </router-link>
       </div>
       <!-- <div class="articleImgBox"><img src="static\picture\pic.jpg" align="right"></div> -->
-      <div class="articleContainerBox"><img src="static\picture\pic.jpg" align="right">{{i.time}}</div>
+      <div class="articleContainerBox">
+        <!-- <div class="imgBox"> -->
+          <img src="static\picture\pic.jpg" align="right" />
+        <!-- </div> -->
+        {{i.time}}
+      </div>
     </li>
   </ul>
 </template>
@@ -23,7 +28,8 @@ export default {
       list: [
         {
           title: "How to study Vue",
-          time: "2016-04-10 1ahahahhahahah哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
+          time:
+            "2016-04-10 1ahahahhahahahhahahhahahhahahahhhahahhah哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
         },
         {
           title: "How to study Typescript",

@@ -1,7 +1,7 @@
 <template>
   <div class="mianBox">
     <div class="inputBox">
-      <el-input v-model="username" placeholder="用户名"></el-input>
+      <el-input v-model="username" placeholder="用户名" autofocus="true"></el-input>
     </div>
     <div class="inputBox">
       <el-input v-model="password" placeholder="密码" show-password></el-input>
