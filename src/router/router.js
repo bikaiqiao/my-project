@@ -35,6 +35,12 @@ const routes = [{
             import ("@/pages/wangEditor.vue")
     },
     {
+        path: '/wangEditor2',
+        name: 'wangEditor2',
+        component: () =>
+            import ("@/pages/wangEditor2.vue")
+    },
+    {
         path: '/mavonEditor',
         name: 'mavonEditor',
         component: () =>
@@ -56,7 +62,19 @@ const routes = [{
         path: '/test',
         name: 'test',
         component: () =>
-            import ("@/pages/components")
+            import ("@/pages/test.vue")
+    },
+    {
+        path: '/member_centre',
+        name: 'memberCentre',
+        component: () =>
+            import ("@/pages//memberCentre.vue")
+    },
+    {
+        path: '/account',
+        name: 'account',
+        component: () =>
+            import ("@/pages//account.vue")
     },
 ];
 

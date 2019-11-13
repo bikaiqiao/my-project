@@ -34,14 +34,16 @@ export default {
       //拼接四个对象进去
       for (var i = 0; i < files.length; i++) {
         data.append("files", files[i]);
-      } 
+      }
       data.append("userName", "11111");
       data.append("title", "22222");
       this.$axios
         .postWithURLWithToken("article/image/add", data)
         .then(response => {
           // 上传代码返回结果之后，将图片插入到编辑器中
-          insert(response.imgUrl);
+          for (var i = 0; i < files.length; i++) {
+            insert(response.data.list[i]);
+          }
         })
         .catch(function(error) {
           console.error(error);

@@ -1,7 +1,7 @@
 <template>
   <div class="mianBox">
     <div class="inputBox">
-      <el-input v-model="username" placeholder="用户名"></el-input>
+      <el-input v-model="username" placeholder="用户名" autofocus="true"></el-input>
     </div>
     <div class="inputBox">
       <el-input v-model="password" placeholder="密码" show-password></el-input>
@@ -27,6 +27,7 @@
 </style>
 
 <script>
+import store from "./../store/store.js";
 import qs from "qs";
 export default {
   data: function() {
@@ -46,6 +47,7 @@ export default {
         .postWithURL("login", qsParameter)
         .then(response => {
           // this.myAlert();
+          this.$store.commit("login",username)
           this.action();
         })
         .catch(function(error) {
@@ -59,7 +61,7 @@ export default {
         type: "success",
         duration: 3000
       });
-      this.$router.replace({ path: "/" });
+      this.$router.push({ path: "/" });
     }
   }
 };

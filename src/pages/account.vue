@@ -6,7 +6,7 @@
     <el-container>
 
       <el-aside width="200px">
-        <el-menu class="el-menu-vertical-demo" router @open="handleOpen" @close="handleClose" :default-openeds="['2']">
+        <el-menu class="el-menu-vertical-demo" router @open="handleOpen" @close="handleClose" :default-openeds="['1']">
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-ice-cream-round"></i>
@@ -52,11 +52,12 @@
 
       <el-main>
         <div id="overview">
-          <h1>创作数据统计</h1>
-          <div>
-            <ve-line :data="chartData"></ve-line>
-            <h1>数据2</h1>
-            <ve-line :data="data2"></ve-line>
+          <h1>个人帐号设置</h1>
+          <div class="setting_block">
+            <div>
+                1111
+            </div>
+            <div>222</div>
           </div>
         </div>
       </el-main>
@@ -67,6 +68,7 @@
 
 <style lang="scss" scoped>
 @import "../../static/css/manager.scss";
+@import "../../static/css/account.scss";
 </style>
 
 <script>
@@ -77,22 +79,7 @@ export default {
     }, 
     data () {
       return {
-        chartData: {
-          columns: ['日期', '访问用户', '发布文章数量'],
-          rows: [
-            { '日期': '2018-05-22', '访问用户': 32371, '发布文章数量': 19810 },
-            { '日期': '2018-05-23', '访问用户': 12328, '发布文章数量': 4398 },
-            { '日期': '2018-05-24', '访问用户': 92381, '发布文章数量': 52910 }
-          ]
-        },
-        data2:{
-          columns: ['日期', '访问用户', '发布文章数量'],
-          rows: [
-            { '日期': '2018-05-22', '访问用户': 3371, '发布文章数量': 19810 },
-            { '日期': '2018-05-23', '访问用户': 1328, '发布文章数量': 4398 },
-            { '日期': '2018-05-24', '访问用户': 92381, '发布文章数量': 52910 }
-          ]
-        }
+        
       }
     }
 }
