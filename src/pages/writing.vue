@@ -13,8 +13,9 @@
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
                 @close="handleClose"
-                background-color="#404040"
-                text-color="#fff"
+                background-color="#4d4d4d"
+                text-color="#99CCFF"
+                active-text-color="rgb(238, 189, 54)"
               >
                 <el-button @click="show1=true" class="writing-newanthology-button" type="text">新建文集</el-button>
                 <el-menu-item-group v-show="show1">
@@ -22,7 +23,11 @@
                     <div v-if="show1">
                       <el-input v-model="input" placeholder="文件集名"></el-input>
                       <el-button type="success" class="navigation-buttons-Submission" round>提交</el-button>
-                      <el-button v-if="show1" class="navigation-buttons-cancel" @click="show1 =false">取消</el-button>
+                      <el-button
+                        v-if="show1"
+                        class="navigation-buttons-cancel"
+                        @click="show1 =false"
+                      >取消</el-button>
                     </div>
                   </transition>
                 </el-menu-item-group>
@@ -47,7 +52,7 @@
                       @click="visible=true"
                       size="mini"
                       icon="el-icon-search"
-                      class="writing-set-button-tow"
+                      class="writing-set-button"
                       circle
                       type="text"
                     ></el-button>
@@ -67,10 +72,33 @@
                     >默认编辑器</el-button>
                   </el-popover>
                   <el-popover placement="left" width="100" trigger="hover">
-                     <el-switch v-model="value" active-color="#13ce66" inactive-color="black" active-text="夜间" inactive-text="日间"></el-switch>
-                    <el-switch v-model="value1" active-color="#13ce66" inactive-color="black" active-text="宋体" inactive-text="繁体"></el-switch>
-                    <el-switch v-model="value2" active-color="#13ce66" inactive-color="black" active-text="繁体" inactive-text="简体"></el-switch>
-                    <el-button type="text" class="writing-setup-button" size="mini" slot="reference">设置显示模式</el-button>
+                    <el-switch
+                      v-model="value"
+                      active-color="#13ce66"
+                      inactive-color="black"
+                      active-text="夜间"
+                      inactive-text="日间"
+                    ></el-switch>
+                    <el-switch
+                      v-model="value1"
+                      active-color="#13ce66"
+                      inactive-color="black"
+                      active-text="宋体"
+                      inactive-text="繁体"
+                    ></el-switch>
+                    <el-switch
+                      v-model="value2"
+                      active-color="#13ce66"
+                      inactive-color="black"
+                      active-text="繁体"
+                      inactive-text="简体"
+                    ></el-switch>
+                    <el-button
+                      type="text"
+                      class="writing-setup-button"
+                      size="mini"
+                      slot="reference"
+                    >设置显示模式</el-button>
                   </el-popover>
                   <el-button type="text" class="writing-setup-button" size="mini">回收站</el-button>
                   <el-button type="text" class="writing-setup-button" size="mini">帮助与反馈</el-button>
@@ -105,6 +133,7 @@
               class="el-menu-vertical-demo"
               @open="handleOpen"
               @close="handleClose"
+              background-color="#CCCCCC"
             >
               <el-menu-item index="2">
                 <el-button type="text">新建文集</el-button>
@@ -116,14 +145,16 @@
           </div>
         </el-col>
         <el-col :span="15">
-          <div class="grid-content bg-purple-right">简书</div>
+          <div class="grid-content bg-purple-right">share_web</div>
         </el-col>
       </el-row>
     </div>
   </el-container>
 </template>
 
-<style src="../../static/css/writing.css"></style>
+<style lang="scss" scoped>
+@import "../../static/css/writing.scss";
+</style>
 
 <script>
 export default {
@@ -150,7 +181,3 @@ export default {
   }
 };
 </script>
-
-
-
-
