@@ -18,6 +18,7 @@ const store = new Vuex.Store({
         },
         logout(state) {
             state.userState = false;
+            state.userName = "";
         }
     }
 })

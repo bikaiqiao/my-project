@@ -8,19 +8,15 @@ const httpService = axios.create({
     timeout: 5000 // 请求超时时间
 });
 // const URL = "http://192.168.1.129:8888/api/";
-const URL = "http://192.168.43.4:8888/api/";
+const URL = "http://192.168.1.115:8888/api/";
+// const URL = "http://192.168.1.109:8888/api/"
 
 
 // request拦截器
 httpService.interceptors.request.use(
     config => {
-        // if (config.data.requestInterceptors == false) {
-        //     config.data = config.data.params;
-        // } else {
-        // 让每个请求携带token
         config.headers.Authorization = 'Bearer ' + Cookies.get("token");
         config.data = config.data.params;
-        // }
         console.log(config);
         return config;
     },
@@ -145,7 +141,6 @@ export function postWithURLWithToken(url, params) {
             data: {
                 params
             },
-            headers: { 'Content-Type': 'multipart/form-data;boundary=--------------------56423498738365' }
 
         }).then(response => {
             resolve(response);

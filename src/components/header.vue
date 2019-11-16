@@ -16,7 +16,7 @@
         <i class="el-icon-zoom-in navIconPosition"></i>
         <el-input v-model="select" placeholder="搜索" style="width:70%"></el-input>
       </el-menu-item>
-      <router-link to="/wangEditor" class="navNone">
+      <router-link to="/writing" class="navNone">
         <el-menu-item style="float:right">写文章</el-menu-item>
       </router-link>
       <div v-if="!userState">
@@ -94,8 +94,6 @@ export default {
     };
   },
   created() {
-    console.log(this.$store.state.userState);
-    console.log(this.userState);
     this.userState = this.$store.state.userState;
     // if (Cookies.get("token")) {
     //   this.userState = true;
