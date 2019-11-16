@@ -58,6 +58,7 @@
               <img src="../../static/icon/c1.png">
             </div>
             <div id="lever">
+              <div>当前用户：{{user}}</div>
               <div id="lever_num">当前会员等级：{{lever}}</div>
               <div id="lever_progress"><el-progress :percentage=this.schedule></el-progress></div>
               
@@ -117,11 +118,12 @@
         count:1,
         member:13,
         followers:3,
-        total_read:999,
+        total_read: 56,
         yesterday_read:99,
         lever:1,
         post_num:56,
         schedule:67,
+        user: this.$store.state.userName,
         articles:[
           "How to study Vue",
           
