@@ -6,7 +6,7 @@
           <div>
             <div class="grid-content bg-purple-left">
               <div class="writing-button-box">
-                <button onclick="location.href=''" class="writing-back-button">回首页</button>
+                <button onclick="location.href='/'" class="writing-back-button">回首页</button>
               </div>
               <el-menu
                 default-active="2"
@@ -36,10 +36,10 @@
                   <span slot="title" @click="visible=true">
                     随笔
                     <el-button
-                      class="writing-set-button"
                       size="mini"
                       icon="el-icon-search"
                       type="text"
+                      class="writing-set-button"
                       circle
                     ></el-button>
                   </span>
@@ -55,11 +55,11 @@
                       class="writing-set-button"
                       circle
                       type="text"
-                    ></el-button>
+                    ></el-button> 
                   </span>
                 </el-menu-item>
               </el-menu>
-              <el-popover placement="top" width="160">
+              <el-popover placement="top" width="160" trigger="hover">
                 <div style="text-align: right; margin: 0">
                   <el-popover placement="left" width="100" trigger="hover">
                     <el-button type="text" size="mini">富文本编辑器</el-button>
@@ -99,7 +99,8 @@
                       size="mini"
                       slot="reference"
                     >设置显示模式</el-button>
-                  </el-popover>
+                  </el-popover
+                   >
                   <el-button type="text" class="writing-setup-button" size="mini">回收站</el-button>
                   <el-button type="text" class="writing-setup-button" size="mini">帮助与反馈</el-button>
                 </div>
@@ -145,7 +146,9 @@
           </div>
         </el-col>
         <el-col :span="15">
+            <wangEditor class="writing-wangEditor">
           <div class="grid-content bg-purple-right">share_web</div>
+           </wangEditor>
         </el-col>
       </el-row>
     </div>
@@ -157,8 +160,14 @@
 </style>
 
 <script>
+import wangEditor from '@/pages/wangEditor.vue'
+import wangEditor2 from '@/pages/wangEditor2.vue'
 export default {
-  el: "#demo",
+  el: "#demo",  
+  components : {
+    wangEditor,
+    wangEditor2
+  },
   data() {
     return {
       input: "",
@@ -168,7 +177,9 @@ export default {
       value: true,
       value1: true,
       value2: true,
-      show1: false
+      show1: false,
+      content:null,
+      editorOption:{}
     };
   },
   methods: {

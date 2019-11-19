@@ -65,7 +65,15 @@
 .block {
   width: 40%;
 }
-.writing-see-button,.writing-set-button {
+.writing-see-button{
+  border: none;
+  margin-left: auto;
+  &:hover {border: none;background: none;}
+}
+.writing-set-button {
+  position:absolute;
+  right: -1%;
+  top:25%;
   border: none;
   &:hover {border: none;background: none;}
 }
@@ -77,5 +85,8 @@
 }
 .writing-setup-button{
   width: 100%;
-  text-align: left;
+  margin-left:auto;
+}
+.writing-wangEditor{
+  height: 100vh;
 }
