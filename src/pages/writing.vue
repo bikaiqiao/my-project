@@ -5,15 +5,13 @@
         <el-col :span="4">
           <div>
             <div class="grid-content bg-purple-left">
-              <div class="writing-button-box">
                 <button onclick="location.href='/'" class="writing-back-button">回首页</button>
-              </div>
               <el-menu
                 default-active="2"
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
                 @close="handleClose"
-                background-color="#4d4d4d"
+                background-color="#f1f0f0"
                 text-color="#99CCFF"
                 active-text-color="rgb(238, 189, 54)"
               >
@@ -22,7 +20,7 @@
                   <transition name="fade">
                     <div v-if="show1">
                       <el-input v-model="input" placeholder="文件集名"></el-input>
-                      <el-button type="success" class="navigation-buttons-Submission" round>提交</el-button>
+                      <el-button class="navigation-buttons-Submission" round>提交</el-button>
                       <el-button
                         v-if="show1"
                         class="navigation-buttons-cancel"
@@ -117,8 +115,7 @@
                 title="常见问题"
                 :visible.sync="dialogVisible"
                 width="30%"
-                :before-close="handleClose"
-              >
+                :before-close="handleClose">
                 <span>如果你在使用编辑器的过程中遇到问题，可以尝试以下方案解决：</span>
                 <span slot="footer" class="dialog-footer">
                   <el-button @click="dialogVisible = false">知道了</el-button>
@@ -127,28 +124,9 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="5">
-          <div class="grid-content bg-purple-main">
-            <el-menu
-              default-active="2"
-              class="el-menu-vertical-demo"
-              @open="handleOpen"
-              @close="handleClose"
-              background-color="#CCCCCC"
-            >
-              <el-menu-item index="2">
-                <el-button type="text">新建文集</el-button>
-              </el-menu-item>
-              <el-menu-item index="2">
-                <span slot="title">在下方新建文章</span>
-              </el-menu-item>
-            </el-menu>
-          </div>
-        </el-col>
-        <el-col :span="15">
-            <wangEditor class="writing-wangEditor">
-          <div class="grid-content bg-purple-right">share_web</div>
-           </wangEditor>
+        <el-col :span="20">
+            <writeArticle></writeArticle>
+            <wangEditor ></wangEditor>
         </el-col>
       </el-row>
     </div>
@@ -162,6 +140,7 @@
 <script>
 import wangEditor from '@/pages/wangEditor.vue'
 import wangEditor2 from '@/pages/wangEditor2.vue'
+import writeArticle from '@/pages/writeArticle.vue'
 export default {
   el: "#demo",  
   components : {

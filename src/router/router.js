@@ -76,6 +76,12 @@ const routes = [{
         component: () =>
             import ("@/pages//account.vue")
     },
+    {
+        path: '/writeArticle',
+        name: 'writeArticle',
+        component: () =>
+            import ("@/pages//writeArticle.vue")
+    },
 ];
 
 export default new Router({
