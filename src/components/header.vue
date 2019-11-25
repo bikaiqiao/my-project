@@ -16,6 +16,31 @@
         <i class="el-icon-zoom-in navIconPosition"></i>
         <el-input v-model="select" placeholder="搜索" style="width:70%"></el-input>
       </el-menu-item>
+
+      <el-menu-item index="4">
+        <span slot="title">生活</span>
+      </el-menu-item>
+      <el-menu-item index="5">
+        <span slot="title">教育</span>
+      </el-menu-item>
+      <el-menu-item index="6">
+        <span slot="title">心理</span>
+      </el-menu-item>
+      <el-menu-item index="7">
+        <span slot="title">学习</span>
+      </el-menu-item>
+      <el-menu-item index="8">
+        <span slot="title">科技</span>
+      </el-menu-item>
+      <el-menu-item index="9">
+        <span slot="title">数码</span>
+      </el-menu-item>
+      <el-menu-item index="10">
+        <span slot="title">时尚</span>
+      </el-menu-item>
+      <el-menu-item index="11">
+        <span slot="title">影视</span>
+      </el-menu-item>
       <router-link to="/writing" class="navNone">
         <el-menu-item style="float:right">写文章</el-menu-item>
       </router-link>

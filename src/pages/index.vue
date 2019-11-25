@@ -6,14 +6,9 @@
     <el-container>
       <el-main>
         <el-row>
-          <el-col :span="4">&nbsp;</el-col>
-          <el-col :span="4">
-            <div class="asideBox">
-              <myAside></myAside>
-            </div>
-          </el-col>
+          <el-col :span="1">&nbsp;</el-col>
           <!-- 开始中间的正文内容 -->
-          <el-col :span="12">
+          <el-col :span="22">
             <div class="mainBox">
               <div class="rotationChartBox">
                 <rotationChart></rotationChart>
@@ -23,7 +18,7 @@
               </div>
             </div>
           </el-col>
-          <el-col :span="4"></el-col>
+          <el-col :span="1"></el-col>
         </el-row>
       </el-main>
       <el-footer></el-footer>
@@ -39,13 +34,11 @@
 import myHead from "./../components/header.vue";
 import rotationChart from "./../components/rotationChart.vue";
 import layout from "./../components/layout.vue";
-import myAside from "./../components/aside.vue";
 export default {
   components: {
     myHead,
     rotationChart,
     layout,
-    myAside
   },
   data() {
     return {
