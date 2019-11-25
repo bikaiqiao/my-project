@@ -11,7 +11,7 @@
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
                 @close="handleClose"
-                background-color="#4d4d4d"
+                background-color="#f1f0f0"
                 text-color="#000"
                 active-text-color="rgb(238, 189, 54)"
               >
@@ -44,7 +44,7 @@
                 </el-menu-item>
                 <el-menu-item index="3">
                   <i class="el-icon"></i>
-                  <span slot="title">
+                  <span slot="title" @v-show="show2=true">
                     日记本
                     <el-button
                       @click="visible=true"
@@ -124,9 +124,13 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="20">
-            <writeArticle></writeArticle>
-            <wangEditor ></wangEditor>
+       <el-col :span="5">
+         <div>
+         <writeArticle  v-show="show1"></writeArticle>
+         </div>
+        </el-col>
+        <el-col :span="15">
+          <wangEditor></wangEditor>
         </el-col>
       </el-row>
     </div>
@@ -145,7 +149,8 @@ export default {
   el: "#demo",  
   components : {
     wangEditor,
-    wangEditor2
+    wangEditor2,
+    writeArticle
   },
   data() {
     return {
