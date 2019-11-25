@@ -39,7 +39,7 @@
               <div id="fans_count_num">{{followers}}</div>
             </div>
           </div>
-          <a class="details">数据详情 ></a>
+          <a class="details" href="/analytics">数据详情 ></a>
           <div id="member">会员等级：{{member}}</div>
           <div id="count">帖子总数：{{count}}</div>
           <div id="follows">关注人数：{{followers}}</div>

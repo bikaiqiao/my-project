@@ -82,6 +82,12 @@ const routes = [{
         component: () =>
             import ("@/pages//writeArticle.vue")
     },
+    {
+        path: '/myarticle',
+        name: 'MyArticle',
+        component: () =>
+            import ("@/pages//myArticle.vue")
+    },
 ];
 
 export default new Router({

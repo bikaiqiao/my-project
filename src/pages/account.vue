@@ -26,8 +26,39 @@
               </el-upload>
             </div>
             </div>
-            <div>222222222</div>
+            <div></div>
           </div>
+
+          <el-collapse v-model="activeNames" @change="handleChange">
+            <el-collapse-item title="设置密码" name="1">
+              <div>输入新密码</div>
+              <div class="setting_box">
+                <el-input placeholder="请输入密码" v-model="password" show-password></el-input>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item title="绑定手机" name="2">
+              <div>请输入手机号</div>
+              <div class="setting_box">
+                <el-input placeholder="请输入内容" v-model="input" clearable></el-input>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item title="绑定邮箱" name="3">
+              <div>邮箱号</div>
+              <div class="setting_box">
+                <el-input placeholder="请输入内容" v-model="input" clearable></el-input>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item title="绑定QQ号" name="4">
+              <div class="setting_box">
+                <el-input placeholder="请输入qq号" v-model="input" clearable></el-input>
+              </div>
+            </el-collapse-item>
+          </el-collapse>
+          <div style="height:20px"></div>
+          <div id="submit_box">
+            <el-button plain @click="login()">提交</el-button>
+          </div>
+
         </div>
       </el-main>
     </el-container>
@@ -76,7 +107,10 @@ export default {
   },
   data() {
     return {
-      imageUrl: ""
+      imageUrl: "",
+      activeNames: ['1'],
+      input: '',
+      password: ''
     };
   },
   methods: {

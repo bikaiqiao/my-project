@@ -11,8 +11,8 @@
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
                 @close="handleClose"
-                background-color="#f1f0f0"
-                text-color="#99CCFF"
+                background-color="#4d4d4d"
+                text-color="#000"
                 active-text-color="rgb(238, 189, 54)"
               >
                 <el-button @click="show1=true" class="writing-newanthology-button" type="text">新建文集</el-button>
