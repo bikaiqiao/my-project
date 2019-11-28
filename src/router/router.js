@@ -71,12 +71,6 @@ const routes = [{
             import ("@/pages//account.vue")
     },
     {
-        path: '/writeArticle',
-        name: 'writeArticle',
-        component: () =>
-            import ("@/pages//writeArticle.vue")
-    },
-    {
         path: '/myarticle',
         name: 'MyArticle',
         component: () =>

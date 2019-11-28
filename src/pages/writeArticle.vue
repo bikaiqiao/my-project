@@ -3,8 +3,6 @@
             <el-menu
               default-active="2"
               class="writeArticle"
-              @open="handleOpen"
-              @close="handleClose"
               background-color="#f1f0f0"
               
             >

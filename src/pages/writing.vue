@@ -5,12 +5,10 @@
         <el-col :span="4">
           <div>
             <div class="grid-content bg-purple-left">
-                <button onclick="location.href='/'" class="writing-back-button">回首页</button>
+              <button onclick="location.href='/'" class="writing-back-button">回首页</button>
               <el-menu
                 default-active="2"
                 class="el-menu-vertical-demo"
-                @open="handleOpen"
-                @close="handleClose"
                 background-color="#f1f0f0"
                 text-color="#000"
                 active-text-color="rgb(238, 189, 54)"
@@ -31,7 +29,7 @@
                 </el-menu-item-group>
                 <el-menu-item index="2">
                   <i class="el-icon"></i>
-                  <span slot="title" @click="visible=true">
+                  <span slot="title" @click="show2=true,C1=false,C2=true">
                     随笔
                     <el-button
                       size="mini"
@@ -44,7 +42,7 @@
                 </el-menu-item>
                 <el-menu-item index="3">
                   <i class="el-icon"></i>
-                  <span slot="title" @v-show="show2=true">
+                  <span slot="title" @click="show2=true">
                     日记本
                     <el-button
                       @click="visible=true"
@@ -53,7 +51,7 @@
                       class="writing-set-button"
                       circle
                       type="text"
-                    ></el-button> 
+                    ></el-button>
                   </span>
                 </el-menu-item>
               </el-menu>
@@ -97,8 +95,7 @@
                       size="mini"
                       slot="reference"
                     >设置显示模式</el-button>
-                  </el-popover
-                   >
+                  </el-popover>
                   <el-button type="text" class="writing-setup-button" size="mini">回收站</el-button>
                   <el-button type="text" class="writing-setup-button" size="mini">帮助与反馈</el-button>
                 </div>
@@ -111,11 +108,7 @@
                 class="writing-problem"
                 type="text"
               >遇到问题</el-button>
-              <el-dialog
-                title="常见问题"
-                :visible.sync="dialogVisible"
-                width="30%"
-                :before-close="handleClose">
+              <el-dialog title="常见问题" :visible.sync="dialogVisible" width="30%">
                 <span>如果你在使用编辑器的过程中遇到问题，可以尝试以下方案解决：</span>
                 <span slot="footer" class="dialog-footer">
                   <el-button @click="dialogVisible = false">知道了</el-button>
@@ -124,13 +117,9 @@
             </div>
           </div>
         </el-col>
-       <el-col :span="5">
-         <div>
-         <writeArticle  v-show="show1"></writeArticle>
-         </div>
-        </el-col>
-        <el-col :span="15">
-          <wangEditor></wangEditor>
+        <el-col :span="20">
+          <writeArticle v-show="show2"></writeArticle>
+          <wangEditor :class="{ wangEditorboxone:C1,wangEditorboxtow: C2}"></wangEditor>
         </el-col>
       </el-row>
     </div>
@@ -143,36 +132,23 @@
 
 <script>
 import wangEditor from '@/pages/wangEditor.vue'
-import wangEditor2 from '@/pages/wangEditor2.vue'
 import writeArticle from '@/pages/writeArticle.vue'
 export default {
-  el: "#demo",  
   components : {
     wangEditor,
-    wangEditor2,
     writeArticle
   },
   data() {
     return {
       input: "",
       dialogVisible: false,
-      count: 0,
       visible: false,
-      value: true,
-      value1: true,
-      value2: true,
       show1: false,
-      content:null,
+      show2:false,
+      C1:true,
+      C2:false,
       editorOption:{}
-    };
+    };  
   },
-  methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    }
-  }
 };
 </script>
